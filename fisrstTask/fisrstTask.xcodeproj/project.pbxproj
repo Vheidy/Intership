@@ -14,6 +14,7 @@
 		7607E54325ED2F860065A6DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7607E54225ED2F860065A6DF /* Assets.xcassets */; };
 		7607E54625ED2F860065A6DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7607E54425ED2F860065A6DF /* LaunchScreen.storyboard */; };
 		7607E55325ED34470065A6DF /* FirstTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7607E55225ED34470065A6DF /* FirstTaskViewController.swift */; };
+		761C7DC125EFC551005AD7F2 /* FouthTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761C7DC025EFC551005AD7F2 /* FouthTaskViewController.swift */; };
 		76DA23B725EE300800C57E2A /* ThirdTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DA23B625EE300800C57E2A /* ThirdTaskViewController.swift */; };
 		76DA23BA25EE587400C57E2A /* SecondTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DA23B925EE587400C57E2A /* SecondTaskViewController.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +29,7 @@
 		7607E54525ED2F860065A6DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7607E54725ED2F860065A6DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7607E55225ED34470065A6DF /* FirstTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTaskViewController.swift; sourceTree = "<group>"; };
+		761C7DC025EFC551005AD7F2 /* FouthTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FouthTaskViewController.swift; sourceTree = "<group>"; };
 		76DA23B625EE300800C57E2A /* ThirdTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTaskViewController.swift; sourceTree = "<group>"; };
 		76DA23B925EE587400C57E2A /* SecondTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,9 +68,10 @@
 				7607E53B25ED2F850065A6DF /* SceneDelegate.swift */,
 				7607E53D25ED2F850065A6DF /* ViewController.swift */,
 				7607E53F25ED2F850065A6DF /* Main.storyboard */,
+				7607E55225ED34470065A6DF /* FirstTaskViewController.swift */,
 				76DA23B925EE587400C57E2A /* SecondTaskViewController.swift */,
 				76DA23B625EE300800C57E2A /* ThirdTaskViewController.swift */,
-				7607E55225ED34470065A6DF /* FirstTaskViewController.swift */,
+				761C7DC025EFC551005AD7F2 /* FouthTaskViewController.swift */,
 				7607E54225ED2F860065A6DF /* Assets.xcassets */,
 				7607E54425ED2F860065A6DF /* LaunchScreen.storyboard */,
 				7607E54725ED2F860065A6DF /* Info.plist */,
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7607E53E25ED2F850065A6DF /* ViewController.swift in Sources */,
+				761C7DC125EFC551005AD7F2 /* FouthTaskViewController.swift in Sources */,
 				76DA23B725EE300800C57E2A /* ThirdTaskViewController.swift in Sources */,
 				7607E53A25ED2F850065A6DF /* AppDelegate.swift in Sources */,
 				76DA23BA25EE587400C57E2A /* SecondTaskViewController.swift in Sources */,

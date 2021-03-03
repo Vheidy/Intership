@@ -12,17 +12,34 @@
         <scene sceneID="qXf-0x-0co">
             <objects>
                 <viewController id="XCx-uz-SXC" customClass="ThirdTaskViewController" customModule="fisrstTask" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cqy-UF-FEE" customClass="DrawnView" customModule="fisrstTask" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="cqy-UF-FEE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q1S-Xd-WcD">
+                                <rect key="frame" x="136" y="476" width="143" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Tap for draw">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapButton:" destination="XCx-uz-SXC" eventType="touchUpInside" id="xLI-LC-ZCT"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="RVe-XR-g72"/>
                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Task 3" image="sparkles" catalog="system" id="grt-eP-QjT"/>
+                    <connections>
+                        <outlet property="button" destination="q1S-Xd-WcD" id="es4-ba-VpH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7o5-dn-W4e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-697.10144927536237" y="623.64130434782612"/>
+            <point key="canvasLocation" x="-697" y="634"/>
         </scene>
         <!--Task 1-->
         <scene sceneID="R6R-1C-BS3">
@@ -175,7 +192,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2bt-lf-rf9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2094" y="39"/>
+            <point key="canvasLocation" x="-1586" y="-24"/>
         </scene>
         <!--Spinner View Controller-->
         <scene sceneID="zuO-hG-bVc">
@@ -217,6 +234,9 @@
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -26,15 +26,16 @@ class ViewWithSubviewBounds: UIView {
 
 class FirstTaskViewController: UIViewController {
     
-    @IBOutlet weak var viewB: UIView!
-    @IBOutlet weak var viewD: UIView!
-    @IBOutlet weak var viewC: UIView!
-    @IBOutlet weak var viewE: UIView!
+    @IBOutlet weak var viewB: ViewWithSubviewBounds!
+    @IBOutlet weak var viewD: ViewWithSubviewBounds!
+    @IBOutlet weak var viewC: ViewWithSubviewBounds!
+    @IBOutlet weak var viewE: ViewWithSubviewBounds!
     
     
     @IBOutlet var viewCollection: [UIView]!
     
     @IBOutlet weak var responderChain: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         responderChain.text = "Recognizer chain: "
@@ -61,7 +62,7 @@ class FirstTaskViewController: UIViewController {
                 return
             }
             getSuperView(for: viewRecognizer)
-        @unknown default:
+        default:
             break
         }
     }

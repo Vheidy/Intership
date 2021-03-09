@@ -41,19 +41,55 @@
             </objects>
             <point key="canvasLocation" x="-697" y="634"/>
         </scene>
+        <!--Task 4-->
+        <scene sceneID="ApB-Nr-aPH">
+            <objects>
+                <viewController id="1zW-sY-HyQ" customClass="FouthTaskViewController" customModule="fisrstTask" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Tz-Tn-OJe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PZs-zM-LKh" customClass="CornerRadiusView" customModule="fisrstTask" customModuleProvider="target">
+                                <rect key="frame" x="87" y="67" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k0S-pw-lwP" customClass="RoundedRectView" customModule="fisrstTask" customModuleProvider="target">
+                                <rect key="frame" x="87" y="238" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oCd-11-REo" customClass="PreviewParametrs" customModule="fisrstTask" customModuleProvider="target">
+                                <rect key="frame" x="87" y="403" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="f8T-AV-AEh"/>
+                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Task 4" id="pwd-By-3aH"/>
+                    <connections>
+                        <outlet property="yellowView" destination="k0S-pw-lwP" id="Tbi-q7-nUw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WeF-fJ-h9B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="41" y="633"/>
+        </scene>
         <!--Task 1-->
         <scene sceneID="R6R-1C-BS3">
             <objects>
                 <viewController id="B5i-2p-Euv" customClass="FirstTaskViewController" customModule="fisrstTask" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bLn-Oe-GVd">
+                    <view key="view" contentMode="scaleToFill" id="bLn-Oe-GVd" customClass="ViewWithSubviewBounds" customModule="fisrstTask" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7u6-kC-leH">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7u6-kC-leH" customClass="ViewWithSubviewBounds" customModule="fisrstTask" customModuleProvider="target">
                                 <rect key="frame" x="87" y="74" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jRY-Eh-nTf">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jRY-Eh-nTf" customClass="ViewWithSubviewBounds" customModule="fisrstTask" customModuleProvider="target">
                                         <rect key="frame" x="8" y="39" width="104" height="81"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -88,7 +124,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mh7-eb-nEJ">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mh7-eb-nEJ" customClass="ViewWithSubviewBounds" customModule="fisrstTask" customModuleProvider="target">
                                         <rect key="frame" x="50" y="62" width="140" height="103"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -126,9 +162,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Task 1" image="tray" catalog="system" id="Sa9-Nl-KLn"/>
                     <connections>
-                        <outlet property="responderChain" destination="Bbz-da-P79" id="sUe-06-YW3"/>
+                        <outlet property="responderChain" destination="Bbz-da-P79" id="inh-2e-Aua"/>
+                        <outlet property="view" destination="bLn-Oe-GVd" id="3wr-sT-e5e"/>
                         <outlet property="viewB" destination="7u6-kC-leH" id="OsX-PN-gcx"/>
-                        <outlet property="viewC" destination="V2U-ed-HEU" id="8cZ-8d-iVR"/>
+                        <outlet property="viewC" destination="V2U-ed-HEU" id="Hw3-n4-rGA"/>
                         <outlet property="viewD" destination="jRY-Eh-nTf" id="W14-jw-9LM"/>
                         <outlet property="viewE" destination="Mh7-eb-nEJ" id="IGf-oT-FV7"/>
                         <outletCollection property="viewCollection" destination="7u6-kC-leH" collectionClass="NSMutableArray" id="my9-9C-UgI"/>
@@ -188,6 +225,7 @@
                         <segue destination="B5i-2p-Euv" kind="relationship" relationship="viewControllers" id="0yr-8K-FI0"/>
                         <segue destination="oeh-2O-w8w" kind="relationship" relationship="viewControllers" id="XuS-Vi-JJp"/>
                         <segue destination="XCx-uz-SXC" kind="relationship" relationship="viewControllers" id="VAn-ei-7dj"/>
+                        <segue destination="1zW-sY-HyQ" kind="relationship" relationship="viewControllers" id="g2I-jT-a9l"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2bt-lf-rf9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -237,6 +275,9 @@
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

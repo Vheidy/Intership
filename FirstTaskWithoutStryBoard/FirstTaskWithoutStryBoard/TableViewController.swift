@@ -55,13 +55,13 @@ class TableViewController: UITableViewController {
     
     func roundCornersBP(cornerRadius: CGFloat, for cell: UITableViewCell) {
         
-        let path = UIBezierPath(roundedRect: CGRect(x: 25, y: 15, width: 40, height: 60), cornerRadius: cornerRadius)
+        let path = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cornerRadius)
         let maskLayer = CAShapeLayer()
-        maskLayer.fillColor = UIColor.gray.cgColor
+        maskLayer.fillColor = UIColor.red.cgColor
         
         maskLayer.frame = cell.bounds
         maskLayer.path = path.cgPath
-        cell.layer.mask = maskLayer
+        cell.textLabel!.layer.mask = maskLayer
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

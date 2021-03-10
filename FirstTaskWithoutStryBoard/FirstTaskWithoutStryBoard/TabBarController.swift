@@ -25,6 +25,7 @@ class TabBarController: UITabBarController {
         setTabBarItem(for: secondTaskVC, named: "Task 2", systemImageName: "diamond")
         setTabBarItem(for: thirdTaskVC, named: "Task 3", systemImageName: "triangle")
         setTabBarItem(for: cornerRadiusVC, named: "", systemImageName: "poweroff")
+        setTabBarItem(for: bezierVC, named: "", systemImageName: "sun.max")
         
         viewControllers = [
             firstTaskVC, secondTaskVC, thirdTaskVC, cornerRadiusVC, bezierVC

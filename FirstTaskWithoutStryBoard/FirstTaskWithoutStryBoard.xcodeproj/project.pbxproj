@@ -15,8 +15,8 @@
 		76D6D7F025F10DEB000560DD /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6D7EF25F10DEB000560DD /* TabBarController.swift */; };
 		76D6D7F325F10F95000560DD /* SecondTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6D7F225F10F95000560DD /* SecondTaskViewController.swift */; };
 		76D6D7F625F10FA2000560DD /* ThirdTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6D7F525F10FA2000560DD /* ThirdTaskViewController.swift */; };
-		76D6D80225F7C1DA000560DD /* CornerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6D80125F7C1DA000560DD /* CornerTableViewController.swift */; };
-		76D6D80525F7C5A9000560DD /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6D80425F7C5A9000560DD /* CollectionViewCell.swift */; };
+		76D6D80225F7C1DA000560DD /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6D80125F7C1DA000560DD /* TableViewController.swift */; };
+		76D6D80525F7C5A9000560DD /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6D80425F7C5A9000560DD /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +30,8 @@
 		76D6D7EF25F10DEB000560DD /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		76D6D7F225F10F95000560DD /* SecondTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTaskViewController.swift; sourceTree = "<group>"; };
 		76D6D7F525F10FA2000560DD /* ThirdTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTaskViewController.swift; sourceTree = "<group>"; };
-		76D6D80125F7C1DA000560DD /* CornerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerTableViewController.swift; sourceTree = "<group>"; };
-		76D6D80425F7C5A9000560DD /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		76D6D80125F7C1DA000560DD /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		76D6D80425F7C5A9000560DD /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +70,8 @@
 				76D6D7F225F10F95000560DD /* SecondTaskViewController.swift */,
 				76D6D7F525F10FA2000560DD /* ThirdTaskViewController.swift */,
 				76D6D7EF25F10DEB000560DD /* TabBarController.swift */,
-				76D6D80125F7C1DA000560DD /* CornerTableViewController.swift */,
-				76D6D80425F7C5A9000560DD /* CollectionViewCell.swift */,
+				76D6D80125F7C1DA000560DD /* TableViewController.swift */,
+				76D6D80425F7C5A9000560DD /* TableViewCell.swift */,
 				76D6D7DE25F10AED000560DD /* Assets.xcassets */,
 				76D6D7E025F10AED000560DD /* LaunchScreen.storyboard */,
 				76D6D7E325F10AED000560DD /* Info.plist */,
@@ -150,10 +150,10 @@
 			files = (
 				76D6D7D625F10AEB000560DD /* AppDelegate.swift in Sources */,
 				76D6D7ED25F10DAF000560DD /* FirstTaskViewController.swift in Sources */,
-				76D6D80525F7C5A9000560DD /* CollectionViewCell.swift in Sources */,
+				76D6D80525F7C5A9000560DD /* TableViewCell.swift in Sources */,
 				76D6D7F625F10FA2000560DD /* ThirdTaskViewController.swift in Sources */,
 				76D6D7F325F10F95000560DD /* SecondTaskViewController.swift in Sources */,
-				76D6D80225F7C1DA000560DD /* CornerTableViewController.swift in Sources */,
+				76D6D80225F7C1DA000560DD /* TableViewController.swift in Sources */,
 				76D6D7F025F10DEB000560DD /* TabBarController.swift in Sources */,
 				76D6D7D825F10AEB000560DD /* SceneDelegate.swift in Sources */,
 			);

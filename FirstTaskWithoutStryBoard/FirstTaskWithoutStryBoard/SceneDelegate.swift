@@ -10,7 +10,6 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    var windowSpinner: UIWindow?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -23,8 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
         
-        windowSpinner = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        windowSpinner?.rootViewController = SpinnerViewController()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

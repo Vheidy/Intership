@@ -7,8 +7,9 @@
 
 import UIKit
 
- protocol ProtocolViewDelegate {
+protocol ProtocolViewDelegate: AnyObject {
     
+//    func assignNewValue(viewName: String)
     var currentTypeView: TypeView {get set}
     
     func getCurrentView(currentView: UIView) -> TypeView
@@ -42,23 +43,29 @@ class ViewWithSubviewBounds: UIView {
         return inside
     }
     
-//    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-//        let resultView = super.hitTest(point, with: event)
-//        if let _ = resultView {
-//            let type = delegate?.getCurrentView(currentView: self) ?? .none
-//            delegate?.currentTypeView = type
-//        }
-//        return resultView
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let resultView = super.hitTest(point, with: event)
+        if let _ = resultView {
+            let type = delegate?.getCurrentView(currentView: self) ?? .none
+            delegate?.currentTypeView = type
+//            delegate?.assignNewValue(viewName: type.rawValue)
+        }
+        return resultView
+    }
+    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesBegan(touches, with: event)
+//        let type = delegate?.getCurrentView(currentView: self) ?? .none
+//        delegate?.currentTypeView = type
 //    }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        let type = delegate?.getCurrentView(currentView: self) ?? .none
-        delegate?.currentTypeView = type
-    }
 }
 
 class FirstTaskViewController: UIViewController, ProtocolViewDelegate {
+    func assignNewValue(viewName: String) {
+        responderChain.text = viewName
+    }
+    
 
     var viewB: ViewWithSubviewBounds! {
         didSet {
@@ -108,9 +115,6 @@ class FirstTaskViewController: UIViewController, ProtocolViewDelegate {
     
     var currentTypeView: TypeView = .none {
         didSet {
-            if currentTypeView == .a {
-                responderChain.text = "Responder Chain: "
-            }
             if currentTypeView != .none, var text = responderChain.text {
                 text += currentTypeView.rawValue
                 responderChain.text = text

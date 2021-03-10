@@ -7,12 +7,33 @@
 
 import UIKit
 
+
 class SpinnerViewController: UIViewController {
+    
+    enum StrategyType {
+        case window
+        case present
+        case child
+    }
     
     var spinner: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+    
+    private func setup() {
+        setupSpinner()
+        spinner.startAnimating()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endAction(_:))))
+        view.isUserInteractionEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.view.isUserInteractionEnabled = true
+        }
+    }
+    
+    private func setupSpinner() {
         spinner = UIActivityIndicatorView()
         view.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
@@ -20,10 +41,6 @@ class SpinnerViewController: UIViewController {
             spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        spinner.startAnimating()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-            self?.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self?.endAction(_:))))
-        }
     }
     
     @objc func endAction(_ recognizer: UITapGestureRecognizer) {
@@ -86,7 +103,6 @@ class SecondTaskViewController: UIViewController {
             button.layer.shadowOffset = CGSize(width: 0, height:  0.5)
             button.layer.shadowColor = UIColor.black.cgColor
             button.layer.shadowOpacity = 0.5
-
         }
     }
 

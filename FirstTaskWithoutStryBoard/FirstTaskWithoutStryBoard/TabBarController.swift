@@ -18,15 +18,17 @@ class TabBarController: UITabBarController {
         let firstTaskVC = FirstTaskViewController()
         let secondTaskVC = SecondTaskViewController()
         let thirdTaskVC = ThirdTaskViewController()
-        let tableCornerRadiusVC = CornerTableViewController()
+        let cornerRadiusVC = TableViewController(drawType: .cornerRadius)
+        let bezierVC = TableViewController(drawType: .bezierPath)
         
         setTabBarItem(for: firstTaskVC, named: "Task 1", systemImageName: "app")
         setTabBarItem(for: secondTaskVC, named: "Task 2", systemImageName: "diamond")
         setTabBarItem(for: thirdTaskVC, named: "Task 3", systemImageName: "triangle")
-        setTabBarItem(for: tableCornerRadiusVC, named: "", systemImageName: "poweroff")
+        setTabBarItem(for: cornerRadiusVC, named: "", systemImageName: "poweroff")
         
         viewControllers = [
-            firstTaskVC, secondTaskVC, thirdTaskVC, tableCornerRadiusVC
+            firstTaskVC, secondTaskVC, thirdTaskVC, cornerRadiusVC, bezierVC
+            
         ]
       }
 

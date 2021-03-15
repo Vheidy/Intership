@@ -67,43 +67,14 @@ class FirstTaskViewController: UIViewController, ProtocolViewDelegate {
     }
     
 
-    var viewB: ViewWithSubviewBounds! {
-        didSet {
-            setParametersView(for: viewB)
-            viewB.delegate = self
-        }
-    }
-    
-    var viewC: ViewWithSubviewBounds! {
-        didSet {
-            setParametersView(for: viewC)
-            viewC.delegate = self
-        }
-    }
-    
-    var viewD: ViewWithSubviewBounds!  {
-        didSet {
-            setParametersView(for: viewD)
-            viewD.delegate = self
-        }
-    }
-    
-    var viewE: ViewWithSubviewBounds!  {
-        didSet {
-            setParametersView(for: viewE)
-            viewE.delegate = self
-        }
-    }
+    var viewB: ViewWithSubviewBounds = ViewWithSubviewBounds()
+    var viewC: ViewWithSubviewBounds = ViewWithSubviewBounds()
+    var viewD: ViewWithSubviewBounds = ViewWithSubviewBounds()
+    var viewE: ViewWithSubviewBounds = ViewWithSubviewBounds()
     
     var viewA = ViewWithSubviewBounds()
 
     
-    private func setParametersView(for currentView: UIView) {
-        currentView.layer.cornerRadius = 20
-        currentView.layer.shadowOffset = CGSize(width: 0, height:  0.5)
-        currentView.layer.shadowColor = UIColor.black.cgColor
-        currentView.layer.shadowOpacity = 0.5
-    }
     
     var responderChain =  UILabel()
     
@@ -195,11 +166,20 @@ class FirstTaskViewController: UIViewController, ProtocolViewDelegate {
         ])
     }
 
+    private func setParametersView(for currentView: ViewWithSubviewBounds) {
+        currentView.delegate = self
+        currentView.layer.cornerRadius = 20
+        currentView.layer.shadowOffset = CGSize(width: 0, height:  0.5)
+        currentView.layer.shadowColor = UIColor.black.cgColor
+        currentView.layer.shadowOpacity = 0.5
+    }
+    
     private func setView() {
-        viewB = ViewWithSubviewBounds()
-        viewC = ViewWithSubviewBounds()
-        viewD = ViewWithSubviewBounds()
-        viewE = ViewWithSubviewBounds()
+        setParametersView(for: viewB)
+        setParametersView(for: viewA)
+        setParametersView(for: viewC)
+        setParametersView(for: viewD)
+        setParametersView(for: viewE)
 
         viewA.delegate = self
         createView(for: viewB, in: viewA, color: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1), constraints: [

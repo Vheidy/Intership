@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76AB6D8025FA2B2F00F93B31 /* GDPerformanceView.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76AB6D7F25FA2B2F00F93B31 /* GDPerformanceView.xcframework */; };
+		76AB6D8125FA2B2F00F93B31 /* GDPerformanceView.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 76AB6D7F25FA2B2F00F93B31 /* GDPerformanceView.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		76AB6D8325FA338200F93B31 /* CircleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AB6D8225FA338200F93B31 /* CircleViewCell.swift */; };
 		76D6D7D625F10AEB000560DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6D7D525F10AEB000560DD /* AppDelegate.swift */; };
 		76D6D7D825F10AEB000560DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6D7D725F10AEB000560DD /* SceneDelegate.swift */; };
 		76D6D7DF25F10AED000560DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76D6D7DE25F10AED000560DD /* Assets.xcassets */; };
@@ -19,7 +22,23 @@
 		76D6D80525F7C5A9000560DD /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6D80425F7C5A9000560DD /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		76AB6D7E25FA29BD00F93B31 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				76AB6D8125FA2B2F00F93B31 /* GDPerformanceView.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		76AB6D7F25FA2B2F00F93B31 /* GDPerformanceView.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GDPerformanceView.xcframework; path = Carthage/Build/GDPerformanceView.xcframework; sourceTree = "<group>"; };
+		76AB6D8225FA338200F93B31 /* CircleViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleViewCell.swift; sourceTree = "<group>"; };
 		76D6D7D225F10AEB000560DD /* FirstTaskWithoutStryBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FirstTaskWithoutStryBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76D6D7D525F10AEB000560DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76D6D7D725F10AEB000560DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76AB6D8025FA2B2F00F93B31 /* GDPerformanceView.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +70,7 @@
 			children = (
 				76D6D7D425F10AEB000560DD /* FirstTaskWithoutStryBoard */,
 				76D6D7D325F10AEB000560DD /* Products */,
+				76D6D80B25FA0538000560DD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,12 +92,21 @@
 				76D6D7F525F10FA2000560DD /* ThirdTaskViewController.swift */,
 				76D6D7EF25F10DEB000560DD /* TabBarController.swift */,
 				76D6D80125F7C1DA000560DD /* TableViewController.swift */,
+				76AB6D8225FA338200F93B31 /* CircleViewCell.swift */,
 				76D6D80425F7C5A9000560DD /* TableViewCell.swift */,
 				76D6D7DE25F10AED000560DD /* Assets.xcassets */,
 				76D6D7E025F10AED000560DD /* LaunchScreen.storyboard */,
 				76D6D7E325F10AED000560DD /* Info.plist */,
 			);
 			path = FirstTaskWithoutStryBoard;
+			sourceTree = "<group>";
+		};
+		76D6D80B25FA0538000560DD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				76AB6D7F25FA2B2F00F93B31 /* GDPerformanceView.xcframework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,12 +119,16 @@
 				76D6D7CE25F10AEB000560DD /* Sources */,
 				76D6D7CF25F10AEB000560DD /* Frameworks */,
 				76D6D7D025F10AEB000560DD /* Resources */,
+				76D6D82925FA14FE000560DD /* ShellScript */,
+				76AB6D7E25FA29BD00F93B31 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = FirstTaskWithoutStryBoard;
+			packageProductDependencies = (
+			);
 			productName = FirstTaskWithoutStryBoard;
 			productReference = 76D6D7D225F10AEB000560DD /* FirstTaskWithoutStryBoard.app */;
 			productType = "com.apple.product-type.application";
@@ -143,11 +177,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		76D6D82925FA14FE000560DD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		76D6D7CE25F10AEB000560DD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76AB6D8325FA338200F93B31 /* CircleViewCell.swift in Sources */,
 				76D6D7D625F10AEB000560DD /* AppDelegate.swift in Sources */,
 				76D6D7ED25F10DAF000560DD /* FirstTaskViewController.swift in Sources */,
 				76D6D80525F7C5A9000560DD /* TableViewCell.swift in Sources */,
@@ -296,12 +351,20 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7R92P2XBU2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = FirstTaskWithoutStryBoard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = vheidy.FirstTaskWithoutStryBoard;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/FPSCounter.framework",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vheidy.FirstTaskWithoutStryBoard1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -315,12 +378,20 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7R92P2XBU2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = FirstTaskWithoutStryBoard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = vheidy.FirstTaskWithoutStryBoard;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/FPSCounter.framework",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = vheidy.FirstTaskWithoutStryBoard1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

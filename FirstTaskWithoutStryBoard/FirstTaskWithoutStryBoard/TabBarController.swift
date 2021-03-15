@@ -20,15 +20,22 @@ class TabBarController: UITabBarController {
         let thirdTaskVC = ThirdTaskViewController()
         let cornerRadiusVC = TableViewController(drawType: .cornerRadius)
         let bezierVC = TableViewController(drawType: .bezierPath)
+        let imageVC = TableViewController(drawType: .image)
         
         setTabBarItem(for: firstTaskVC, named: "Task 1", systemImageName: "app")
         setTabBarItem(for: secondTaskVC, named: "Task 2", systemImageName: "diamond")
         setTabBarItem(for: thirdTaskVC, named: "Task 3", systemImageName: "triangle")
         setTabBarItem(for: cornerRadiusVC, named: "", systemImageName: "poweroff")
         setTabBarItem(for: bezierVC, named: "", systemImageName: "sun.max")
+        setTabBarItem(for: imageVC, named: "", systemImageName: "lasso")
         
         viewControllers = [
-            firstTaskVC, secondTaskVC, thirdTaskVC, cornerRadiusVC, bezierVC
+//            firstTaskVC,
+            secondTaskVC,
+            thirdTaskVC,
+            cornerRadiusVC,
+            bezierVC,
+            imageVC
             
         ]
       }

@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../Carthage/Checkouts/fps-counter/FPSCounter.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../Carthage/Checkouts/fps-counter">
+   </FileRef>
+   <FileRef
       location = "self:">
    </FileRef>
 </Workspace>

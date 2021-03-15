@@ -1,0 +1,28 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "2.1.1",
+  "iOS" : [
+    {
+      "swiftToolchainVersion" : "5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)",
+      "hash" : "a4dd979642addaac2d45f184940908ccc90582c8af903feffb6f12cb0cf1267d",
+      "name" : "GDPerformanceView",
+      "container" : "GDPerformanceView.xcframework",
+      "identifier" : "ios-arm64_i386_x86_64-simulator"
+    },
+    {
+      "swiftToolchainVersion" : "5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)",
+      "hash" : "d5f5e00740b4841381be1933e173ecd59428233c53dbf66d8686e5bc70ab2d4d",
+      "name" : "GDPerformanceView",
+      "container" : "GDPerformanceView.xcframework",
+      "identifier" : "ios-arm64_armv7"
+    }
+  ]
+}

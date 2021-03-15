@@ -16,7 +16,7 @@ class SpinnerViewController: UIViewController {
         case child
     }
     
-    var spinner: UIActivityIndicatorView!
+    var spinner: UIActivityIndicatorView = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ class SpinnerViewController: UIViewController {
     }
     
     private func setupSpinner() {
-        spinner = UIActivityIndicatorView()
+//        spinner =
         view.addSubview(spinner)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -126,8 +126,8 @@ class SecondTaskViewController: UIViewController {
     }
     
     @objc func actionButton(_ sender: UIButton) {
-//        coverEverything()
-        presentSpinner()
+        coverEverything()
+//        presentSpinner()
 //        loadContent()
     }
     

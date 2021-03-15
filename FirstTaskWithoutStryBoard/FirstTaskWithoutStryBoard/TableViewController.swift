@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GDPerformanceView
 
 
 class TableViewController: UITableViewController {
@@ -16,6 +17,7 @@ class TableViewController: UITableViewController {
         case image
     }
     
+    
     let currentTypeViewDraw: ViewDraw
     
     let emojiSet = ["Lion": "🦁", "Dog": "🐶", "Fox": "🦊", "Tiger": "🐯", "Frog": "🐸", "Monkey": "🐵", "Mouse": "🐹", "Pig": "🐷", "Cat": "🐱", "Panda": "🐼"]
@@ -23,18 +25,24 @@ class TableViewController: UITableViewController {
     
     let animalsNames = ["Lion", "Dog", "Fox", "Tiger", "Frog", "Monkey", "Mouse", "Pig", "Cat", "Panda"]
     
-    lazy var items: [String] = (0...1000).map { _ in randomEmojis }
+    lazy var items: [String] = (0...10000).map { _ in randomEmojis }
     var randomEmojis: String { return animalsNames[Int(arc4random_uniform(UInt32(emojiSet.count)))] }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        PerformanceMonitor.shared().start()
+        switch currentTypeViewDraw {
+        case .image:
+            tableView.register(CircleViewCell.self, forCellReuseIdentifier: "cell")
+        default:
+            tableView.register(CustomViewCell.self, forCellReuseIdentifier: "cell")
+        }
     }
-
+    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 70
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -64,30 +72,41 @@ class TableViewController: UITableViewController {
         cell.textLabel!.layer.mask = maskLayer
     }
     
+    
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "FPS: \()"
+//    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
-        let description = items[indexPath.row]
-
-        cell.textLabel?.text = emojiSet[description]
-        cell.detailTextLabel?.text = description
-        cell.detailTextLabel?.isHidden = false
-        cell.textLabel?.backgroundColor = .gray
-        cell.textLabel?.font = UIFont(name: "Helvetica", size: 60)
-        cell.detailTextLabel?.font = UIFont(name: "Helvetica", size: 20)
-        let cornerRadius: CGFloat = 20
+        
         switch currentTypeViewDraw {
-        case .cornerRadius:
-            roundedCornersCR(cornerRadius: cornerRadius, for: cell)
-        case .bezierPath:
-           roundCornersBP(cornerRadius: cornerRadius, for: cell)
-        default:
-            break
+        
+        case .cornerRadius, .bezierPath:
+            let cell = CustomViewCell()
+            let description = items[indexPath.row]
+            
+            cell.avatarLabel.text = emojiSet[description]
+            cell.avatarLabel1.text = cell.avatarLabel.text
+            cell.avatarLabel2.text = cell.avatarLabel.text
+            cell.avatarLabel3.text = cell.avatarLabel.text
+            cell.avatarLabel4.text = cell.avatarLabel.text
+            cell.descriptionLabel.text = description
+            cell.currentTypeRounded = currentTypeViewDraw
+//            cell.layer.shouldRasterize = true
+//
+//                    cell.layer.rasterizationScale = UIScreen.main.scale
+            return cell
+        case .image:
+            let cell = CircleViewCell()
+            
+            let description = items[indexPath.row]
+            
+            cell.descriptionLabel.text = description
+//            cell.layer.shouldRasterize = true
+//                    cell.layer.rasterizationScale = UIScreen.main.scale
+            cell.imageRounded.image = UIImage(named: "circle")
+            return cell
         }
-
-        cell.textLabel?.textAlignment = .center
-        cell.textLabel?.contentMode = .center
-
-        return cell
     }
     
     init(drawType: TableViewController.ViewDraw) {
@@ -101,3 +120,4 @@ class TableViewController: UITableViewController {
     
 
 }
+

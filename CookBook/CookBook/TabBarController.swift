@@ -1,8 +1,8 @@
 //
-//  TabBarViewController.swift
+//  TabBarController.swift
 //  CookBook
 //
-//  Created by OUT-Salyukova-PA on 15.03.2021.
+//  Created by OUT-Salyukova-PA on 16.03.2021.
 //
 
 import UIKit
@@ -15,11 +15,8 @@ class TabBarViewController: UITabBarController {
     }
     
     func setup() {
-        let mainScreen = MainNavigationController()
+        let mainScreen = MainNavigationController(nibName: nil, bundle: nil)
         let ingredientScreen = IngredientScreenTableViewController()
-        
-        
-        
         
         ingredientScreen.tabBarItem.image = UIImage(systemName: "rectangle.fill.on.rectangle.fill")
         mainScreen.tabBarItem.image = UIImage(systemName: "book")

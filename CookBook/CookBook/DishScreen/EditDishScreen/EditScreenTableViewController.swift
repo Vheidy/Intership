@@ -12,7 +12,9 @@ class EditRecipeScreenTableViewController: UITableViewController, UITextFieldDel
 
     
     var editModel = EditScreenModel()
-//    var 
+    var dish = Dish()
+    
+    var mainViewController: MainScreenTableViewController?
     
     var isHightlight = false {
         didSet {
@@ -57,7 +59,7 @@ class EditRecipeScreenTableViewController: UITableViewController, UITextFieldDel
     
     
     @objc   func addRecipe() {
-        let dish = Dish(name: <#T##String#>, typeDish: <#T##String#>, ingredient: <#T##[Ingredient]#>, orderOfAction: <#T##String#>, image: <#T##URL?#>, cuisine: <#T##String?#>, calories: <#T##Int?#>)
+        mainViewController?.viewModel?.addDish(dish: dish)
         closeScreen()
     }
     
@@ -94,9 +96,27 @@ class EditRecipeScreenTableViewController: UITableViewController, UITextFieldDel
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        addDishInfo(textField)
         if !checkMainFields() {
             isHightlight = true
+        } else {
             navigationItem.rightBarButtonItem?.isEnabled = true
+        }
+    }
+    
+    func addDishInfo(_ textfield: UITextField) {
+        guard let text = textfield.text else { return }
+        switch textfield.placeholder {
+        case "Dish Name":
+            dish.name = text
+        case "Dish Type":
+            dish.typeDish = text
+        case "Action":
+            dish.orderOfAction.append(text)
+        case "Ingredient":
+            dish.ingredient.append(text)
+        default:
+            break
         }
     }
     

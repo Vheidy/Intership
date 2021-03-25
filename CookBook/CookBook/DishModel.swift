@@ -7,15 +7,13 @@
 
 import Foundation
 
-struct Ingredient {
-    var name: String
-}
 
 struct Dish {
-    var name: String
-    var typeDish: String
-    var ingredient: [Ingredient]
-    var orderOfAction: String
+    var name: String = ""
+    var typeDish: String = ""
+    //Make Ingredient
+    var ingredient: [String] = []
+    var orderOfAction: [String] = []
     var image: URL?
     var cuisine: String?
     var calories: Int?

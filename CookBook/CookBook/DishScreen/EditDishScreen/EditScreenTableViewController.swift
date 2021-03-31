@@ -8,13 +8,19 @@
 import UIKit
 
 
-class EditRecipeScreenTableViewController: UITableViewController, UITextFieldDelegate {
+class EditRecipeScreenTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    private var dish: Dish
+    // FIXME: Try to remove this and create new instance in methods
+    private var imagePicker: UIImagePickerController
     
-    var editModel = EditScreenModel()
-//    var 
+    private var editModel: EditScreenModel
     
-    var isHightlight = false {
+    private var imageView: UIImageView?
+    
+    private var saveDish: (_ dish: Dish)->()
+    
+    private var isHightlight = false {
         didSet {
             if isHightlight {
                 hightlightCells()
@@ -22,11 +28,167 @@ class EditRecipeScreenTableViewController: UITableViewController, UITextFieldDel
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    // INIT, saveAction - action for save dish in mainScreen
+    init(with model: EditScreenModel, saveAction: @escaping (_ dish: Dish)->()) {
+        self.saveDish = saveAction
+        self.dish = Dish()
+        self.imagePicker = UIImagePickerController()
+        self.editModel = model
+        super.init(nibName: nil, bundle: nil)
+
         setup()
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // Needs to save dish in mainScreen and close editScreen
+    @objc   func addRecipe() {
+        self.saveDish(dish)
+        closeScreen()
+    }
+    
+    // FIXME: Split for several methods and rename
+    // Show the alert to choose where get photos
+    @objc func addPhoto() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let actionCamera = UIAlertAction(title: "Camera", style: .default) { [unowned self]  action in
+            pickPhoto(type: .camera)
+        }
+        
+        actionCamera.setValue(UIImage(systemName: "camera"), forKey: "image")
+        actionCamera.setValue(0, forKey: "titleTextAlignment")
+        
+        let actionPhotoLibrary = UIAlertAction(title: "Library", style: .default) { [unowned self]  action in
+            pickPhoto(type: .photoLibrary)
+        }
+        
+        actionPhotoLibrary.setValue(UIImage(systemName: "photo.on.rectangle"), forKey: "image")
+        actionPhotoLibrary.setValue(0, forKey: "titleTextAlignment")
+        
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(actionCamera)
+        alertController.addAction(actionPhotoLibrary)
+        alertController.addAction(actionCancel)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    // Save the photo when the picking did finish
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        guard let imageURL = info[.imageURL] as? URL else {return}
+        dish.imageURl = imageURL
+        guard let data = editModel.fetchImage(from: imageURL) else { return }
+        self.imageView = UIImageView(image: UIImage(data: data))
+        guard let imageDish = imageView else {
+            return
+        }
+        setImage(imageDish)
+    }
+    
+    //FIXME: don't save
+    private func setImage(_ image: UIImageView) {
+        tableView.beginUpdates()
+        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ImageEditCell else {return}
+        cell.imageDish = image
+        tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        tableView.endUpdates()
+//        tableView.reloadData()
+            self.dismiss(animated: true, completion: nil)
+    }
+    
+    // Show the picker according the type
+    private func pickPhoto(type: UIImagePickerController.SourceType) {
+        imagePicker.delegate = self
+        imagePicker.sourceType = type
+        imagePicker.allowsEditing = true
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    // Remove selection when text editing is over
+    @objc func tapOnTableView() {
+        view.endEditing(true)
+        isHightlight = true
+    }
+    
+    // Present screen with ingredient selection functionality
+    @objc func presentChooseIngredientScreen() {
+        let selectViewController = SelectIngredientsViewController(saveCellsAction: addStandartCells(_:))
+//        selectViewController.saveSelectedCells = addStandartCells(_:)
+        
+        navigationController?.pushViewController(selectViewController, animated: true)
+    }
+    
+    // Adding the cells with one label + updateButtomDone
+    private func addStandartCells(_ cells: [IngredientModel]) {
+        tableView.beginUpdates()
+        for cell  in cells {
+            let indexPath = editModel.appEnd(section: 2, ingredient: cell)
+            tableView.insertRows(at: [indexPath], with: .automatic)
+            dish.ingredient.append(cell)
+        }
+        tableView.endUpdates()
+        updateButtonDone()
+    }
+    
+    // Adding the cells with one textField, also highlited this cells if needed + updateButtomDone
+    private func addInputCells() {
+        tableView.beginUpdates()
+        let indexPath = editModel.appEnd(section: 3, ingredient: nil)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
+        
+        if isHightlight {
+            guard let cell = tableView.cellForRow(at: indexPath) as? StandartViewCell else { return }
+            addBorder(for: cell)
+        }
+        updateButtonDone()
+    }
+    
+    @objc func closeScreen() {
+        navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
+    // Check if the required cells are filled (Name, Type, Ingredients, Actions)
+    private func checkMainFields() -> Bool {
+        var flag = true
+        for sectionNum in 1...3 {
+            let rows = editModel.getRowsInSection(section: sectionNum)
+            if sectionNum == 2, rows.isEmpty {
+                flag = false
+                break
+            }
+            for row in rows.indices {
+                if let cell = tableView.cellForRow(at: IndexPath(row: row, section: sectionNum)) as? StandartViewCell, let textCell = cell.textField?.text, textCell.isEmpty {
+                    flag = false
+                }
+            }
+        }
+        return flag
+    }
+    
+    // Highlights some of required cells if they have not been filled
+    private func hightlightCells() {
+        for sectionNum in 1...3 {
+            let rows = editModel.getRowsInSection(section: sectionNum)
+            for row in rows.indices {
+                if let cell = tableView.cellForRow(at: IndexPath(row: row, section: sectionNum)) as? StandartViewCell, let textCell = cell.textField?.text, textCell.isEmpty {
+                    addBorder(for: cell)
+                }
+            }
+        }
+    }
+  
+    private func addBorder(for cell: StandartViewCell) {
+        cell.textField?.layer.borderWidth = 2
+        cell.textField?.layer.borderColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.2).cgColor
+    }
+    
+    // MARK: - Setup
     
     private func setup() {
         tableView.rowHeight = UITableView.automaticDimension
@@ -53,86 +215,33 @@ class EditRecipeScreenTableViewController: UITableViewController, UITextFieldDel
         tableView.register(CustomHeader.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
         tableView.register(ImageEditCell.self, forCellReuseIdentifier: "ImageEditCell")
         tableView.register(StandartViewCell.self, forCellReuseIdentifier: "StandartViewCell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
     }
     
-    
-    @objc   func addRecipe() {
-        let dish = Dish(name: <#T##String#>, typeDish: <#T##String#>, ingredient: <#T##[Ingredient]#>, orderOfAction: <#T##String#>, image: <#T##URL?#>, cuisine: <#T##String?#>, calories: <#T##Int?#>)
-        closeScreen()
-    }
-    
-    @objc func addPhoto() {
-        //ToDO: add the logic for add photo
-    }
-    
-    @objc func tapOnTableView() {
-        view.endEditing(true)
-    }
-    
-    @objc func addCell(section: Int) {
-        tableView.beginUpdates()
-        let indexPath = editModel.appEnd(section: section)
-        tableView.insertRows(at: [indexPath], with: .automatic)
-        tableView.endUpdates()
+    // MARK: - TableViewDelegate implementation
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        if isHightlight {
-            guard let cell = tableView.cellForRow(at: indexPath) as? StandartViewCell else { return }
-            addBorder(for: cell)
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            if editModel.checkDeleting(indexPath: indexPath) {
-                tableView.deleteRows(at: [indexPath], with: .fade)
+        guard let cell = editModel.getSection(section: section), let sectionTitle = editModel.getTitleSection(section: section) else { return nil }
+        
+        switch cell.needsHeader {
+        case .need(let title):
+            // FIXME: Put this in init of CustomHeader
+            let headerView = CustomHeader()
+            headerView.title?.text = title
+            headerView.section = section
+            if sectionTitle == "Ingredients" {
+                headerView.action = self.presentChooseIngredientScreen
+            } else {
+                headerView.action = self.addInputCells
             }
+            return headerView
+        default:
+            return nil
         }
     }
     
-    @objc func closeScreen() {
-        navigationController?.dismiss(animated: true, completion: nil)
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if !checkMainFields() {
-            isHightlight = true
-            navigationItem.rightBarButtonItem?.isEnabled = true
-        }
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.clear.cgColor
-
-    }
-
-    private func checkMainFields() -> Bool {
-        var flag = true
-        for sectionNum in 1...3 {
-            let rows = editModel.getRowsInSection(section: sectionNum)
-            for row in rows.indices {
-                if let cell = tableView.cellForRow(at: IndexPath(row: row, section: sectionNum)) as? StandartViewCell, let textCell = cell.textField?.text, textCell.isEmpty {
-                    flag = false
-                }
-            }
-        }
-        return flag
-    }
-    
-    private func hightlightCells() {
-        for sectionNum in 1...3 {
-            let rows = editModel.getRowsInSection(section: sectionNum)
-            for row in rows.indices {
-                if let cell = tableView.cellForRow(at: IndexPath(row: row, section: sectionNum)) as? StandartViewCell, let textCell = cell.textField?.text, textCell.isEmpty {
-                    addBorder(for: cell)
-                }
-            }
-        }
-    }
-  
-    private func addBorder(for cell: StandartViewCell) {
-        cell.textField?.layer.borderWidth = 2
-        cell.textField?.layer.borderColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.2).cgColor
-    }
+    // MARK: - TableViewDataSourse implementation
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return editModel.getSectionCount()
@@ -141,20 +250,14 @@ class EditRecipeScreenTableViewController: UITableViewController, UITextFieldDel
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         editModel.getRowsInSectionCount(section: section)
     }
-
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        guard let cell = editModel.getSection(section: section) else { return nil }
-        
-        switch cell.needsHeader {
-        case .need(let title):
-            let view = CustomHeader()
-            view.title?.text = title
-            view.section = section
-            view.action = addCell(section:)
-            return view
-        default:
-            return nil
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if editModel.checkDeleting(indexPath: indexPath) {
+                let cell = tableView.cellForRow(at: indexPath)
+                cell?.textLabel?.text = ""
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         }
     }
     
@@ -166,9 +269,20 @@ class EditRecipeScreenTableViewController: UITableViewController, UITextFieldDel
         
         switch row {
         case .image:
-            return tableView.dequeueReusableCell(withIdentifier: "ImageEditCell", for: indexPath)
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ImageEditCell", for: indexPath) as? ImageEditCell else { return UITableViewCell() }
+            if let image = self.imageView {
+                cell.imageDish = image
+            }
+            cell.addPhoto = self.addPhoto
+            return cell
         case .inputItem(let placeholder):
             return createSmallCell(placeholder: placeholder, indexPath: indexPath)
+        case .labelItem(let title):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+            cell.textLabel?.text = title
+            cell.textLabel?.font = UIFont(name: "Verdana", size: 20)
+            cell.textLabel?.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            return cell
         }
     }
     
@@ -183,3 +297,32 @@ class EditRecipeScreenTableViewController: UITableViewController, UITextFieldDel
     
 }
 
+extension EditRecipeScreenTableViewController: UITextFieldDelegate {
+    
+    fileprivate func updateButtonDone() {
+        if !checkMainFields() {
+            isHightlight = true
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        } else {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField.placeholder {
+        case "Dish Name":
+            dish.name = textField.text ?? ""
+        case "Dish Type":
+            dish.typeDish = textField.text ?? ""
+        case "Action":
+            dish.orderOfAction.append(textField.text ?? "")
+        default:
+            break
+        }
+        updateButtonDone()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.clear.cgColor
+    }
+}

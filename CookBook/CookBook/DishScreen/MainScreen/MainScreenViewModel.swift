@@ -11,12 +11,16 @@ import Foundation
 protocol MainScreenViewModelProtocol: AnyObject {
     func countCells() -> Int
     func getFields(for index: Int) -> DisplayModel?
+    func addDish(dish: Dish)
+    func deleteRows(index: Int)
+    var updateScreen: (() -> ())? {get set}
 }
 
 
 
 class MainScreenViewModel: MainScreenViewModelProtocol {
     var dishes: [Dish]
+    var updateScreen: (() -> ())?
     
     init(dishes: [Dish]) {
         self.dishes = dishes
@@ -33,5 +37,15 @@ class MainScreenViewModel: MainScreenViewModelProtocol {
 //        }
         let displayModel = DisplayModel(name: dish.name, type: dish.typeDish, image: nil)
         return displayModel
+    }
+    
+    func addDish(dish: Dish) {
+        dishes.append(dish)
+        updateScreen?()
+    }
+    
+    func deleteRows(index: Int) {
+        dishes.remove(at: index)
+        updateScreen?()
     }
 }

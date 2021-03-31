@@ -13,7 +13,7 @@ class CustomHeader: UITableViewHeaderFooterView {
     var section: Int?
     var mainSubView: UIView?
     
-    var action: ((Int) -> ())?
+    var action: (() -> ())?
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -38,36 +38,39 @@ class CustomHeader: UITableViewHeaderFooterView {
         mainSubView.addSubview(title)
         mainSubView.addSubview(addButton)
         
-        NSLayoutConstraint.activate([
-            mainSubView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
-            mainSubView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            mainSubView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            mainSubView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        ])
-        
         title.font = UIFont(name: "Verdana", size: 20)
         title.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         
         addButton.setImage(UIImage(systemName: "plus"), for: .normal)
         addButton.addTarget(self, action: #selector(didTap), for: .touchUpInside)
         
-        NSLayoutConstraint.activate([
-            title.topAnchor.constraint(equalTo: mainSubView.topAnchor, constant: Constants.margin),
-            title.leadingAnchor.constraint(equalTo: mainSubView.leadingAnchor, constant: Constants.margin),
-            title.bottomAnchor.constraint(equalTo: mainSubView.bottomAnchor),
-            
-            addButton.topAnchor.constraint(equalTo: mainSubView.topAnchor, constant: Constants.margin),
-            addButton.bottomAnchor.constraint(equalTo: mainSubView.bottomAnchor),
-            addButton.trailingAnchor.constraint(equalTo: mainSubView.trailingAnchor, constant: -Constants.margin),
-            addButton.widthAnchor.constraint(equalToConstant: 20)
-        ])
+        setConstraints(mainSubView: mainSubView, title: title, addButton: addButton)
         
         self.title = title
         self.addButton = addButton
     }
     
+    private func setConstraints(mainSubView: UIView, title: UILabel, addButton: UIButton) {
+        NSLayoutConstraint.activate([
+            mainSubView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
+            mainSubView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            mainSubView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            mainSubView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+  
+            title.topAnchor.constraint(equalTo: mainSubView.topAnchor, constant: Constants.margin),
+            title.leadingAnchor.constraint(equalTo: mainSubView.leadingAnchor, constant: Constants.margin),
+            title.bottomAnchor.constraint(equalTo: mainSubView.bottomAnchor, constant: -Constants.margin),
+            
+            addButton.topAnchor.constraint(equalTo: mainSubView.topAnchor, constant: Constants.margin),
+            addButton.bottomAnchor.constraint(equalTo: mainSubView.bottomAnchor, constant: -Constants.margin),
+            addButton.trailingAnchor.constraint(equalTo: mainSubView.trailingAnchor, constant: -Constants.margin),
+            addButton.widthAnchor.constraint(equalToConstant: 20)
+        ])
+    }
+    
+    // Action for add cell in section
     @objc func didTap() {
-        action?(self.section ?? 0)
+        action?()
     }
     
     required init?(coder: NSCoder) {

@@ -23,17 +23,15 @@ class ImageEditCell: UITableViewCell {
     
     var editButton: UIButton?
     var imageDish: UIImageView?
+    var addPhoto: (() -> ())?
     
-    
-    static let identifier = "ImageEditCell"
+//    static let identifier = "ImageEditCell"
 
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.backgroundColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
-
-        
         setImage()
         setButton()
     }
@@ -49,21 +47,28 @@ class ImageEditCell: UITableViewCell {
         editButton.setTitleColor(.systemBlue, for: .normal)
         editButton.titleLabel?.font = UIFont(name: "Verdana", size: 15)
         
+        guard let image = imageDish else {
+            return
+        }
+        
         NSLayoutConstraint.activate([
             editButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            editButton.topAnchor.constraint(equalTo: imageDish!.bottomAnchor, constant: Parameters.button.topMardin),
+            editButton.topAnchor.constraint(equalTo: image.bottomAnchor, constant: Parameters.button.topMardin),
             editButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.margin
             )
         ])
         
-        editButton.addTarget(EditRecipeScreenTableViewController(), action: #selector(EditRecipeScreenTableViewController.addPhoto), for: .touchUpInside)
+        editButton.addAction(UIAction(handler: { [unowned self] action in
+            self.addPhoto?()
+        }), for: .touchUpInside)
         
         self.editButton = editButton
     }
     
     private func setImage() {
-        let imageDish = UIImageView(image: UIImage(named: "plate"))
-        
+        let imageDish = self.imageDish ?? UIImageView(image: UIImage(named: "plate"))
+//        let imageDish = UIImageView(image: UIImage(named: "plate"))
+
         contentView.addSubview(imageDish)
         imageDish.translatesAutoresizingMaskIntoConstraints = false
         

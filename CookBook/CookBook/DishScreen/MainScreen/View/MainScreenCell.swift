@@ -33,10 +33,6 @@ class MainScreenTableViewCell: UITableViewCell {
     var nameLabel: UILabel?
     var dishTypeLabel: UILabel?
 
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

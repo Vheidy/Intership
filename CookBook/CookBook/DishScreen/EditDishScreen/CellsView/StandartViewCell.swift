@@ -7,20 +7,11 @@
 
 import UIKit
 
-//class PolinaView: UITextView {
-//
-//    override var intrinsicContentSize: CGSize { - READ
-//        contentSize
-//    }
-//}
-
-
-
 class StandartViewCell: UITableViewCell{
     
     var textField: UITextField?
 
-    static let identifier = "StandartViewCell"
+//    static let identifier = "StandartViewCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -31,6 +22,7 @@ class StandartViewCell: UITableViewCell{
         
     }
     
+    // Set placeholder for textField
     func configure(with title: String) {
         textField?.placeholder = title
     }
@@ -56,13 +48,9 @@ class StandartViewCell: UITableViewCell{
         
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         textField.leftViewMode = .always
-        
-
-        self.textField = textField
-        
-    }
     
-
+        self.textField = textField
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

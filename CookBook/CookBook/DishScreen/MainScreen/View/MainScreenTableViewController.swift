@@ -13,14 +13,56 @@ struct DisplayModel {
     var image: UIImage?
 }
 
+
 class MainScreenTableViewController: UITableViewController {
     
-    var viewModel: MainScreenViewModelProtocol?
+    private var viewModel: MainScreenViewModelProtocol?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    init(with viewModel: MainScreenViewModelProtocol) {
+        super.init(nibName: nil, bundle: nil)
+        self.viewModel = viewModel
+        self.viewModel?.updateScreen = tableView.reloadData
+        setup()
+    }
+    
+    private func setup() {
+        navigationItem.title = "CookBook"
+
+        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add , target: self, action: #selector(presentEditScreen)), animated: true)
         tableView.register(MainScreenTableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    
+
+    
+
+    
+    // Add dish to 
+    func addDish(_ dish: Dish) {
+        viewModel?.addDish(dish: dish)
+    }
+    
+    // Create and present EditScreen
+    @objc func presentEditScreen() {
+        let editScreen = EditRecipeScreenTableViewController(with: EditScreenModel(), saveAction: self.addDish(_:))
+        let nc = UINavigationController(rootViewController: editScreen)
+        nc.navigationBar.barTintColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
+        
+        present(nc, animated: true, completion: nil)
+    }
+    
+    // MARK: - TableViewDelegate implementation
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return Constants.heightCell
+    }
+    
+    // MARK: - TableViewDataSource implementation
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            viewModel?.deleteRows(index: indexPath.row)
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -48,8 +90,7 @@ class MainScreenTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return Constants.heightCell
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-
 }

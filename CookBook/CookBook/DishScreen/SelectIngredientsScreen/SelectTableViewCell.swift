@@ -43,7 +43,6 @@ class SelectTableViewCell: UITableViewCell {
         
         selectButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
         selectButton.isHidden = true
-//        selectButton.addTarget(self, action: #selector(didTap), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.margin),
@@ -60,6 +59,7 @@ class SelectTableViewCell: UITableViewCell {
         self.selectButton = selectButton
     }
 
+    // Implement logic for show which cells are selected
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         

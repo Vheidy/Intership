@@ -15,7 +15,7 @@ class TabBarViewController: UITabBarController {
     }
     
     private func setup() {
-        let ingredientScreen = IngredientScreenTableViewController()
+        let ingredientScreen = IngredientScreenTableViewController(nibName: nil, bundle: nil)
         let ingredientNavigationController = UINavigationController(rootViewController: ingredientScreen)
         ingredientNavigationController.navigationBar.barTintColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
         

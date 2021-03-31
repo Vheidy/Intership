@@ -37,7 +37,7 @@ class MainScreenTableViewController: UITableViewController {
     
 
     
-    // Add dish to 
+    // Add dish to the model
     func addDish(_ dish: Dish) {
         viewModel?.addDish(dish: dish)
     }

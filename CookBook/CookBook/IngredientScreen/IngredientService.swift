@@ -52,9 +52,6 @@ protocol IngredientServiceProtocol {
 
 class IngredientsService: IngredientServiceProtocol {
     
-    // FIXME: Replace singlethon with DI = DONE
-    
-    // FIXME: NSManagedObject -> Object model - DONE
     private var ingredients = [IngredientModel]()
     private let coreDataService: CoreDataService
     
@@ -62,8 +59,6 @@ class IngredientsService: IngredientServiceProtocol {
     private var currentContext: NSManagedObjectContext
     
     var updateView: VoidCallback?
-    
-//    static var idCount: Int16 = 0
     
     init(updateView: VoidCallback?) {
         coreDataService = CoreDataService()
@@ -75,30 +70,30 @@ class IngredientsService: IngredientServiceProtocol {
         self.updateData()
     }
     
+    // Add ingredient at ingredients array and CoreData
     func addIngredient(_ ingredient: IngredientModel) {
-//        DispatchQueue.global(qos: .background).async { [unowned self] in
+        DispatchQueue.global(qos: .default).async { [unowned self] in
             let ingredientObject = NSManagedObject(entity: entity, insertInto: currentContext)
             
             ingredientObject.setValue(ingredient.name, forKey: "name")
         ingredientObject.setValue(ingredient.id, forKey: "id")
-//        IngredientsService.idCount += 1
             do {
                 try currentContext.save()
-                updateData()
-//                print(ingredients)
-//                ingredients.append(ingredient)
-//                DispatchQueue.main.async { [unowned self] in
+                
+                DispatchQueue.main.async { [unowned self] in
+                    updateData()
                     updateView?()
-//                }
+                }
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
-//        }
+        }
         
     }
     
+    // Update the ingredients array from coreData
     private func updateData() {
-//        DispatchQueue.global(qos: .default).async { [unowned self] in
+        DispatchQueue.global(qos: .default).async { [unowned self] in
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Ingredient")
             do {
                 let ingredientsObjects = try currentContext.fetch(fetchRequest)
@@ -112,12 +107,13 @@ class IngredientsService: IngredientServiceProtocol {
             } catch {
                 print(error)
             }
-//        }
+        }
     }
     
+    //Delete ingredients from ingredients array and CoreData
     func deleteIngredient(index: Int) {
         guard ingredients.indices.contains(index) else {return}
-//        DispatchQueue.global(qos: .background).async { [unowned self] in
+        DispatchQueue.global(qos: .default).async { [unowned self] in
             let ingredient = ingredients[index]
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Ingredient")
             do {
@@ -127,17 +123,18 @@ class IngredientsService: IngredientServiceProtocol {
                         currentContext.delete(object)
                         try currentContext.save()
                         updateData()
-//                        DispatchQueue.main.async {
+                        DispatchQueue.main.async {
                             updateView?()
-//                        }
+                        }
                     }
                 }
             } catch {
                 print(error)
             }
-//        }
+        }
     }
     
+    //Get ingredient for indexPath
     func fetchIngredient(for index: Int) -> IngredientModel? {
         guard ingredients.indices.contains(index) else {return nil}
         let ingredient = ingredients[index]

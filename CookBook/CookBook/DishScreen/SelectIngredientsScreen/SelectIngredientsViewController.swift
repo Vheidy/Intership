@@ -31,6 +31,7 @@ class SelectIngredientsViewController: UITableViewController {
         tableView.register(SelectTableViewCell.self, forCellReuseIdentifier: "SelectTableViewCell")
     }
  
+    // Find selected cells and returns it in ingredient form
     @objc func addIngredients() {
         var selectedIngredients = [IngredientModel]()
         let section = 0

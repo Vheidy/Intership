@@ -11,18 +11,41 @@ import CoreData
 
 class IngredientScreenTableViewController: UITableViewController {
     
-    lazy var ingredientService = IngredientsService(updateView: self.tableView.reloadData)
+    private lazy var ingredientService =  IngredientsService(updateView: self.tableView.reloadData)
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         navigationItem.title = "Ingredients"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentEditScreen))
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // Present alert to input ingredient name
+    @objc func presentEditScreen() {
+        let alertController = UIAlertController(title: "Add ingredient", message: "Enter ingredient name", preferredStyle: .alert)
+        
+        let actionDone = UIAlertAction(title: "Ok", style: .default) { [unowned self] action in
+            
+            guard let textField = alertController.textFields?.first, let nameToSave = textField.text, !nameToSave.isEmpty else { return }
+            ingredientService.addIngredient(IngredientModel(name: nameToSave, id: UUID().uuidString))
+        }
+        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(actionDone)
+        alertController.addAction(actionCancel)
+        alertController.addTextField(configurationHandler: nil)
+        
+        present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    // MARK: - TableViewDataSourse implementation
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             ingredientService.deleteIngredient(index: indexPath.row)
@@ -43,24 +66,6 @@ class IngredientScreenTableViewController: UITableViewController {
         cell.textLabel?.text = ingredientService.fetchIngredient(for: indexPath.row)?.name
         
         return cell
-    }
-    
-    @objc func presentEditScreen() {
-        let alertController = UIAlertController(title: "Add ingredient", message: "Enter ingredient name", preferredStyle: .alert)
-        
-        let actionDone = UIAlertAction(title: "Ok", style: .default) { [unowned self] action in
-            
-            guard let textField = alertController.textFields?.first, let nameToSave = textField.text, !nameToSave.isEmpty else { return }
-            ingredientService.addIngredient(IngredientModel(name: nameToSave, id: UUID().uuidString))
-        }
-        let actionCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alertController.addAction(actionDone)
-        alertController.addAction(actionCancel)
-        alertController.addTextField(configurationHandler: nil)
-        
-        present(alertController, animated: true, completion: nil)
-        
     }
     
 

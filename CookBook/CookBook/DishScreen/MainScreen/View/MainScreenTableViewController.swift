@@ -18,7 +18,6 @@ class MainScreenTableViewController: UITableViewController {
     
     private var viewModel: MainScreenViewModelProtocol?
 
-<<<<<<< HEAD:CookBook/CookBook/DishScreen/MainScreen/View/MainScreenTableViewController.swift
     init(with viewModel: MainScreenViewModelProtocol) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
@@ -64,25 +63,6 @@ class MainScreenTableViewController: UITableViewController {
         if editingStyle == .delete {
             viewModel?.deleteRows(index: indexPath.row)
         }
-=======
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
-        
-        navigationItem.title = "CookBook"
-        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add , target: self, action: #selector(presentEditScreen)), animated: true)
-        
-        tableView.register(MainScreenTableViewCell.self, forCellReuseIdentifier: "cell")
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
->>>>>>> 9a008e1a620f7133e7b19be088af0314134febff:CookBook/CookBook/DishScreen/MainScreen/MainScreenTableViewController.swift
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -113,19 +93,4 @@ class MainScreenTableViewController: UITableViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-<<<<<<< HEAD:CookBook/CookBook/DishScreen/MainScreen/View/MainScreenTableViewController.swift
-=======
-
-    @objc func presentEditScreen() {
-        
-        let editScreen = EditRecipeScreenTableViewController()
-        editScreen.mainViewController = self
-        let navigationController = UINavigationController(rootViewController: editScreen)
-        navigationController.navigationBar.barTintColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
-
-
-        present(navigationController, animated: true, completion: nil)
-    }
-    
->>>>>>> 9a008e1a620f7133e7b19be088af0314134febff:CookBook/CookBook/DishScreen/MainScreen/MainScreenTableViewController.swift
 }

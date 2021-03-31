@@ -14,14 +14,7 @@ class EditRecipeScreenTableViewController: UITableViewController, UIImagePickerC
     // FIXME: Try to remove this and create new instance in methods
     private var imagePicker: UIImagePickerController
     
-<<<<<<< HEAD
     private var editModel: EditScreenModel
-=======
-    var editModel = EditScreenModel()
-    var dish = Dish()
-    
-    var mainViewController: MainScreenTableViewController?
->>>>>>> 9a008e1a620f7133e7b19be088af0314134febff
     
     private var imageView: UIImageView?
     
@@ -96,7 +89,6 @@ class EditRecipeScreenTableViewController: UITableViewController, UIImagePickerC
         setImage(imageDish)
     }
     
-<<<<<<< HEAD
     //FIXME: don't save
     private func setImage(_ image: UIImageView) {
         tableView.beginUpdates()
@@ -106,11 +98,6 @@ class EditRecipeScreenTableViewController: UITableViewController, UIImagePickerC
         tableView.endUpdates()
 //        tableView.reloadData()
             self.dismiss(animated: true, completion: nil)
-=======
-    @objc   func addRecipe() {
-        mainViewController?.viewModel?.addDish(dish: dish)
-        closeScreen()
->>>>>>> 9a008e1a620f7133e7b19be088af0314134febff
     }
     
     // Show the picker according the type
@@ -166,40 +153,7 @@ class EditRecipeScreenTableViewController: UITableViewController, UIImagePickerC
         navigationController?.dismiss(animated: true, completion: nil)
     }
     
-<<<<<<< HEAD
     // Check if the required cells are filled (Name, Type, Ingredients, Actions)
-=======
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        addDishInfo(textField)
-        if !checkMainFields() {
-            isHightlight = true
-        } else {
-            navigationItem.rightBarButtonItem?.isEnabled = true
-        }
-    }
-    
-    func addDishInfo(_ textfield: UITextField) {
-        guard let text = textfield.text else { return }
-        switch textfield.placeholder {
-        case "Dish Name":
-            dish.name = text
-        case "Dish Type":
-            dish.typeDish = text
-        case "Action":
-            dish.orderOfAction.append(text)
-        case "Ingredient":
-            dish.ingredient.append(text)
-        default:
-            break
-        }
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.clear.cgColor
-
-    }
-
->>>>>>> 9a008e1a620f7133e7b19be088af0314134febff
     private func checkMainFields() -> Bool {
         var flag = true
         for sectionNum in 1...3 {

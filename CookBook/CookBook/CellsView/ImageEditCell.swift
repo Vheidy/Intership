@@ -66,9 +66,9 @@ class ImageEditCell: UITableViewCell {
     }
     
     private func setImage() {
-        let imageDish = self.imageDish ?? UIImageView(image: UIImage(named: "plate"))
-//        let imageDish = UIImageView(image: UIImage(named: "plate"))
+//        let imageDish = self.imageDish ?? UIImageView(image: UIImage(named: "plate"))
 
+        let imageDish = UIImageView()
         contentView.addSubview(imageDish)
         imageDish.translatesAutoresizingMaskIntoConstraints = false
         

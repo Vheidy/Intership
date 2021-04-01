@@ -19,7 +19,7 @@ class TabBarViewController: UITabBarController {
         let ingredientNavigationController = UINavigationController(rootViewController: ingredientScreen)
         ingredientNavigationController.navigationBar.barTintColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
         
-        let mainViewController = MainScreenTableViewController(with: MainScreenViewModel(dishes: []))
+        let mainViewController = MainScreenTableViewController(with: DishService(dishes: []))
         let dishNavigationController = UINavigationController(rootViewController: mainViewController)
         ingredientNavigationController.navigationBar.barTintColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
         

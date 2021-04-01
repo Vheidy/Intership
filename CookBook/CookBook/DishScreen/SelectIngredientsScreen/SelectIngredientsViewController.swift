@@ -13,7 +13,7 @@ class SelectIngredientsViewController: UITableViewController {
     var saveSelectedCells: (_ cells: [IngredientModel]) -> ()
     
     init(saveCellsAction: @escaping (_ cells: [IngredientModel]) -> ()) {
-        ingredientService = IngredientsService(updateView: nil)
+        ingredientService = IngredientsService(updateViewData: nil)
         saveSelectedCells = saveCellsAction
         super.init(nibName: nil, bundle: nil)
         setup()

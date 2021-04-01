@@ -10,15 +10,15 @@ import UIKit
 
 class EditRecipeScreenTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    private var dish: Dish
+    private var dish: DishModel
     // FIXME: Try to remove this and create new instance in methods
     private var imagePicker: UIImagePickerController
     
     private var editModel: EditScreenModel
     
-    private var imageView: UIImageView?
+    private var imageView: UIImage?
     
-    private var saveDish: (_ dish: Dish)->()
+    private var saveDish: (_ dish: DishModel)->()
     
     private var isHightlight = false {
         didSet {
@@ -29,13 +29,16 @@ class EditRecipeScreenTableViewController: UITableViewController, UIImagePickerC
     }
     
     // INIT, saveAction - action for save dish in mainScreen
-    init(with model: EditScreenModel, saveAction: @escaping (_ dish: Dish)->()) {
+    init(with model: EditScreenModel, saveAction: @escaping (_ dish: DishModel)->()) {
         self.saveDish = saveAction
-        self.dish = Dish()
+        self.dish = DishModel()
+        imageView = nil
         self.imagePicker = UIImagePickerController()
         self.editModel = model
         super.init(nibName: nil, bundle: nil)
 
+//        print(NSTemporaryDirectory())
+        
         setup()
     }
     
@@ -78,27 +81,17 @@ class EditRecipeScreenTableViewController: UITableViewController, UIImagePickerC
     
     // Save the photo when the picking did finish
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        guard let imageURL = info[.imageURL] as? URL else {return}
-        dish.imageURl = imageURL
-        guard let data = editModel.fetchImage(from: imageURL) else { return }
-        self.imageView = UIImageView(image: UIImage(data: data))
-        guard let imageDish = imageView else {
-            return
-        }
-        setImage(imageDish)
+        guard let image = info[.originalImage] as? UIImage else {return}
+        self.imageView = image
+        tableView.reloadData()
+        var path = NSTemporaryDirectory()
+        let name = UUID().uuidString + ".jpeg"
+        path.append(name)
+        editModel.saveImageToDocuments(image: image, withName: name)
+        dish.imageName = name
+        self.dismiss(animated: true, completion: nil)
     }
     
-    //FIXME: don't save
-    private func setImage(_ image: UIImageView) {
-        tableView.beginUpdates()
-        guard let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ImageEditCell else {return}
-        cell.imageDish = image
-        tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-        tableView.endUpdates()
-//        tableView.reloadData()
-            self.dismiss(animated: true, completion: nil)
-    }
     
     // Show the picker according the type
     private func pickPhoto(type: UIImagePickerController.SourceType) {
@@ -269,9 +262,14 @@ class EditRecipeScreenTableViewController: UITableViewController, UIImagePickerC
         
         switch row {
         case .image:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ImageEditCell", for: indexPath) as? ImageEditCell else { return UITableViewCell() }
-            if let image = self.imageView {
-                cell.imageDish = image
+            let cell = ImageEditCell()
+            if let name = dish.imageName {
+                let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+                var path = paths[0] as String
+                path.append(name)
+                cell.imageDish?.image = UIImage(contentsOfFile: path)
+            } else {
+                cell.imageDish?.image = UIImage(named: "plate")
             }
             cell.addPhoto = self.addPhoto
             return cell

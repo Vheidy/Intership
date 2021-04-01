@@ -13,7 +13,7 @@ class IngredientEditTableViewController: UITableViewController, UITextFieldDeleg
     var model = IngredientEditModel()
     var ingredient: IngredientModel?
     
-    lazy var ingredientService = IngredientsService(updateView: nil)
+    lazy var ingredientService = IngredientsService(updateViewData: nil)
     
     var mainScreen: IngredientScreenTableViewController?
     

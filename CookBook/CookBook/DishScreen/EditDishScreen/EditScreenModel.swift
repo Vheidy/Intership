@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 //struct ConstantSection {
 //    let title: String
@@ -104,6 +105,26 @@ class EditScreenModel {
         } catch {
             print(error)
             return nil
+        }
+    }
+    
+    func getDocumentPath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0]
+        return documentsDirectory as String
+    }
+    
+    func saveImageToDocuments(image: UIImage, withName name: String){
+        if let data = image.pngData() {
+            var path = getDocumentPath()
+            path.append(name)
+            let imageFileUrl = URL(fileURLWithPath: path)
+            do {
+                try data.write(to: imageFileUrl)
+                print("Successfully saved image at path: \(imageFileUrl)")
+            } catch {
+                print("Error saving image: \(error)")
+            }
         }
     }
     

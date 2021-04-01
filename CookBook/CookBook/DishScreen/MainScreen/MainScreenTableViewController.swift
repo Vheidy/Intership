@@ -7,12 +7,6 @@
 
 import UIKit
 
-struct DisplayModel {
-    let name: String
-    let type: String
-    var image: UIImage?
-}
-
 
 class MainScreenTableViewController: UITableViewController {
     
@@ -33,10 +27,6 @@ class MainScreenTableViewController: UITableViewController {
     }
     
     
-
-    
-
-    
     // Add dish to the model
     func addDish(_ dish: Dish) {
         viewModel?.addDish(dish: dish)
@@ -45,10 +35,10 @@ class MainScreenTableViewController: UITableViewController {
     // Create and present EditScreen
     @objc func presentEditScreen() {
         let editScreen = EditRecipeScreenTableViewController(with: EditScreenModel(), saveAction: self.addDish(_:))
-        let nc = UINavigationController(rootViewController: editScreen)
-        nc.navigationBar.barTintColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
+        let navigationController = UINavigationController(rootViewController: editScreen)
+        navigationController.navigationBar.barTintColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
         
-        present(nc, animated: true, completion: nil)
+        present(navigationController, animated: true, completion: nil)
     }
     
     // MARK: - TableViewDelegate implementation

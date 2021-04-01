@@ -46,8 +46,8 @@
             filePath = "CookBook/DishScreen/MainScreen/View/MainScreenTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "MainScreenTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -71,134 +71,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FD2A2E82-AAE0-4754-AA98-C6725F43E2BF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CookBook/IngredientScreen/IngredientService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "deleteIngredient(index:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FD2A2E82-AAE0-4754-AA98-C6725F43E2BF - a030b156900fdb40"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CookBook.IngredientsService.deleteIngredient(index: Swift.Int) -&gt; ()"
-                  moduleName = "CookBook"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/out-salyukova-pa/Desktop/Intership/CookBook/CookBook/IngredientScreen/IngredientService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "117"
-                  endingLineNumber = "117"
-                  offsetFromSymbolStart = "521">
-               </Location>
-               <Location
-                  uuid = "FD2A2E82-AAE0-4754-AA98-C6725F43E2BF - 3e46c06cd4d4f265"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in CookBook.IngredientsService.deleteIngredient(index: Swift.Int) -&gt; ()"
-                  moduleName = "CookBook"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/out-salyukova-pa/Desktop/Intership/CookBook/CookBook/IngredientScreen/IngredientService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "118"
-                  endingLineNumber = "118"
-                  offsetFromSymbolStart = "288">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3B420E8F-ABEF-49AE-93A6-00DCC07A3FD0"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CookBook/IngredientScreen/IngredientService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "deleteIngredient(index:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "23D3BA59-F1F6-46BA-B005-BED50F634D3D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CookBook/IngredientScreen/IngredientService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "updateData()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "23D3BA59-F1F6-46BA-B005-BED50F634D3D - eb069b4bd61348f8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CookBook.IngredientsService.(updateData in _A2D86E592DD33605F91833297D1BDBF0)() -&gt; ()"
-                  moduleName = "CookBook"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/out-salyukova-pa/Desktop/Intership/CookBook/CookBook/IngredientScreen/IngredientService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "102"
-                  endingLineNumber = "102"
-                  offsetFromSymbolStart = "200">
-               </Location>
-               <Location
-                  uuid = "23D3BA59-F1F6-46BA-B005-BED50F634D3D - eca8fc193d084d7f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in CookBook.IngredientsService.(updateData in _A2D86E592DD33605F91833297D1BDBF0)() -&gt; ()"
-                  moduleName = "CookBook"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/out-salyukova-pa/Desktop/Intership/CookBook/CookBook/IngredientScreen/IngredientService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103"
-                  offsetFromSymbolStart = "123">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8C5E4E93-1532-49F2-A272-3FFA9B607EE9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CookBook/IngredientScreen/IngredientService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "deleteIngredient(index:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "84CD6BC3-1B29-4E1E-AF11-B083B7064C5F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -216,7 +88,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "4D3F07BE-56CE-459C-A050-56E058CF5194"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CookBook/IngredientScreen/IngredientService.swift"
@@ -242,6 +114,38 @@
             endingLineNumber = "75"
             landmarkName = "addIngredient(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E9CE7AC1-2809-44D7-9C25-E5F81BE15809 - ee24fcb375d45098"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CookBook.IngredientsService.addIngredient(CookBook.IngredientModel) -&gt; ()"
+                  moduleName = "CookBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/out-salyukova-pa/Desktop/Intership/CookBook/CookBook/IngredientScreen/IngredientService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "306">
+               </Location>
+               <Location
+                  uuid = "E9CE7AC1-2809-44D7-9C25-E5F81BE15809 - 8aea5c73d79962d8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in CookBook.IngredientsService.addIngredient(CookBook.IngredientModel) -&gt; ()"
+                  moduleName = "CookBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/out-salyukova-pa/Desktop/Intership/CookBook/CookBook/IngredientScreen/IngredientService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "312">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -256,7 +160,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
             endingLineNumber = "64"
-            landmarkName = "init(updateView:)"
+            landmarkName = "init(updateViewData:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -286,8 +190,8 @@
             filePath = "CookBook/DishScreen/EditDishScreen/EditScreenTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "tableView(_:viewForHeaderInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,8 +206,8 @@
             filePath = "CookBook/DishScreen/MainScreen/View/MainScreenTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "addDish(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,8 +222,8 @@
             filePath = "CookBook/DishScreen/EditDishScreen/EditScreenTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -343,70 +247,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BC7EE286-C57E-4184-963C-30D52CC80A22"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CookBook/DishScreen/EditDishScreen/EditScreenTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "setImage(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "720D0A7E-DE59-4B7D-B6E2-9D24AE46C4D2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CookBook/DishScreen/EditDishScreen/EditScreenTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2AC329EC-4B91-4789-9B38-279E973A2EB1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CookBook/DishScreen/EditDishScreen/EditScreenTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EC859902-2BC5-49FC-880F-E6B44AD3A6BD"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CookBook/DishScreen/EditDishScreen/EditScreenTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "setImage(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "11FA763B-478B-40D2-A94F-AA33A21C63A9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -414,8 +254,8 @@
             filePath = "CookBook/DishScreen/EditDishScreen/EditScreenTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "checkMainFields()"
             landmarkType = "7">
          </BreakpointContent>
@@ -424,15 +264,47 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "5F8B4757-2E6C-4B64-858D-DD61F89FE856"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CookBook/DishScreen/EditDishScreen/EditScreenTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "874A2AD3-DAB0-4BB1-B710-40E8D820930C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CookBook/CellsView/ImageEditCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "setImage()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "48B77C6D-4FA0-4E55-8010-DA70B768F394"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CookBook/DishScreen/EditDishScreen/EditScreenTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

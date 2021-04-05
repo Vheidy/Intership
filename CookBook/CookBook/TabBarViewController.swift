@@ -17,11 +17,11 @@ class TabBarViewController: UITabBarController {
     private func setup() {
         let ingredientScreen = IngredientScreenTableViewController(nibName: nil, bundle: nil)
         let ingredientNavigationController = UINavigationController(rootViewController: ingredientScreen)
-        ingredientNavigationController.navigationBar.barTintColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
+        ingredientNavigationController.navigationBar.barTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         
         let mainViewController = MainScreenTableViewController(with: DishService(dishes: []))
         let dishNavigationController = UINavigationController(rootViewController: mainViewController)
-        ingredientNavigationController.navigationBar.barTintColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
+        ingredientNavigationController.navigationBar.barTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         
         ingredientScreen.tabBarItem.image = UIImage(systemName: "rectangle.fill.on.rectangle.fill")
         mainViewController.tabBarItem.image = UIImage(systemName: "book")

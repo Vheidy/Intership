@@ -14,7 +14,7 @@ struct Constants {
     }
     
     struct labelParameters {
-        static let backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        static let backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         static let cornerRadius: CGFloat = 5
         static let topOffset = 15
         static let textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)

@@ -74,7 +74,7 @@ class IngredientsService: IngredientServiceProtocol {
     func addIngredient(_ ingredient: IngredientModel) {
 //        DispatchQueue.global(qos: .default).async { [unowned self] in
         let currentContext = coreDataService.persistentContainer.newBackgroundContext()
-        guard let entity = NSEntityDescription.entity(forEntityName: "Ingredient", in: currentContext) else {fatalError()}
+
 //            let ingredientObject = NSManagedObject(entity: entity, insertInto: currentContext)
             let ingredientObject = Ingredient(context: currentContext)
             ingredientObject.id = ingredient.id
@@ -96,7 +96,7 @@ class IngredientsService: IngredientServiceProtocol {
     private func updateData() {
 //        DispatchQueue.global(qos: .default).async { [unowned self] in
         let currentContext = coreDataService.persistentContainer.newBackgroundContext()
-        guard let entity = NSEntityDescription.entity(forEntityName: "Ingredient", in: currentContext) else {fatalError()}
+
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Ingredient")
             do {
                 let ingredientsObjects = try currentContext.fetch(fetchRequest)
@@ -118,7 +118,6 @@ class IngredientsService: IngredientServiceProtocol {
         guard ingredients.indices.contains(index) else {return}
 //        DispatchQueue.global(qos: .default).async { [unowned self] in
         let currentContext = coreDataService.persistentContainer.newBackgroundContext()
-        guard let entity = NSEntityDescription.entity(forEntityName: "Ingredient", in: currentContext) else {fatalError()}
             let ingredient = ingredients[index]
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Ingredient")
             do {

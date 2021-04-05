@@ -34,7 +34,7 @@ class EditRecipeScreenTableViewController: UITableViewController, UIImagePickerC
         self.saveDish = saveAction
 
         self.dish = DishModel(id: Date())
-        imageView = nil
+//        imageView = nil
         self.imagePicker = UIImagePickerController()
         self.editModel = model
         super.init(nibName: nil, bundle: nil)
@@ -274,6 +274,7 @@ class EditRecipeScreenTableViewController: UITableViewController, UIImagePickerC
             } else {
                 cell.imageDish?.image = UIImage(named: "plate")
             }
+
             cell.addPhoto = self.addPhoto
             return cell
         case .inputItem(let placeholder):

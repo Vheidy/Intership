@@ -36,85 +36,124 @@ protocol MainScreenViewModelProtocol: AnyObject {
 
 
 
-class DishService: MainScreenViewModelProtocol {
+class DishService {
     
     var dishes: [DishModel]
-//    var fetchController: NSFetchedResultsController<Dish>
+    var fetchController: NSFetchedResultsController<Dish>
     var updateScreen: (() -> ())?
     
     private let coreDataService: CoreDataService
-    private var entity: NSEntityDescription
     private var currentContext: NSManagedObjectContext
+    
+    var sectionCount: Int {
+        return fetchController.sections?.count ?? 0
+    }
+    
+    func rowsInSections(_ section: Int) -> Int {
+        guard let sections = fetchController.sections, sections.indices.contains(section), let sectionInfo = fetchController.sections?[section] else {
+            return 0
+        }
+        return sectionInfo.numberOfObjects
+    }
     
     init(dishes: [DishModel]) {
         self.dishes = dishes
         coreDataService = CoreDataService()
         self.currentContext = coreDataService.persistentContainer.newBackgroundContext()
-        guard let entity = NSEntityDescription.entity(forEntityName: "Ingredient", in: currentContext) else {fatalError()}
-        self.entity = entity
         
+        let request = NSFetchRequest<Dish>(entityName: "Dish")
+        let sort = NSSortDescriptor(key: "id", ascending: false)
+        request.sortDescriptors = [sort]
         
-//        let request = NSFetchRequest<Dish>(entityName: "Dish")
-//        let sort = NSSortDescriptor(key: "id", ascending: false)
-//        request.sortDescriptors = [sort]
-//        
-//        fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: currentContext, sectionNameKeyPath: nil, cacheName: nil)
-//        //            fetchController.delegate = self
-//        
-//        //        fetchController.fetchRequest.predicate = commitPredicate
-//        
-//        do {
-//            try fetchController.performFetch()
-//            //            tableView.reloadData()
-//            updateScreen?()
-//        } catch {
-//            print("Fetch failed")
-//        }
+        fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: currentContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        do {
+            try fetchController.performFetch()
+            updateScreen?()
+        } catch {
+            print("Fetch failed")
+        }
+        
+    }
+    
+    func loadSavedData() {
+        let request = NSFetchRequest<Dish>(entityName: "Dish")
+        let sort = NSSortDescriptor(key: "id", ascending: false)
+        request.sortDescriptors = [sort]
+        fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: currentContext, sectionNameKeyPath: nil, cacheName: nil)
+        do {
+            try fetchController.performFetch()
+            updateScreen?()
+        } catch {
+            print("Fetch failed")
+        }
     }
     
     func countCells() -> Int {
         return dishes.count
     }
     
-//    func loadSavedData() {
-//        let request = NSFetchRequest<Dish>(entityName: "Dish")
-//        let sort = NSSortDescriptor(key: "id", ascending: false)
-//        request.sortDescriptors = [sort]
-//        
-//        fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: currentContext, sectionNameKeyPath: nil, cacheName: nil)
-//        //            fetchController.delegate = self
-//        
-//        //        fetchController.fetchRequest.predicate = commitPredicate
-//        
-//        do {
-//            try fetchController.performFetch()
-//            //            tableView.reloadData()
-//            updateScreen?()
-//        } catch {
-//            print("Fetch failed")
-//        }
-//    }
-    
-    func getFields(for index: Int) -> DisplayItem? {
-        let dish = dishes[index]
-        var image: UIImage?
-        if let name = dish.imageName {
+    func getFields(for indexPath: IndexPath) -> DisplayItem? {
+        var imageDish: UIImage?
+        let dish = fetchController.object(at: indexPath)
+        guard let name = dish.name, let dishType = dish.typeDish else { return nil }
+        if let imageName = dish.imageName {
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
             var path = paths[0] as String
-            path.append(name)
-            image = UIImage(contentsOfFile: path)
+            path.append(imageName)
+            imageDish = UIImage(contentsOfFile: path)
         }
-        let displayModel = DisplayItem(name: dish.name, type: dish.typeDish, image: image)
+        let displayModel = DisplayItem(name: name, type: dishType, image: imageDish)
         return displayModel
     }
     
     func addDish(dish: DishModel) {
-        dishes.append(dish)
-        updateScreen?()
+        let dishObject = Dish(context: currentContext)
+        dishObject.name = dish.name
+        dishObject.typeDish = dish.typeDish
+        dishObject.cuisine = dish.cuisine
+        dishObject.id = dish.id
+        dishObject.imageName = dish.imageName
+        dishObject.calories = dish.calories ?? 0
+        
+        // Transform [String] -> NSSet<Action>
+        let setActions = NSSet()
+        for action in dish.orderOfAction {
+            let actionObject = Action(context: currentContext)
+            actionObject.text = action
+            setActions.adding(actionObject)
+        }
+        dishObject.orderOfActions =  setActions
+        // Fetch ingredients from CoreData
+        do {
+            let setIngredients = NSSet()
+            let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
+            let ingredientsObjects = try currentContext.fetch(fetchRequest)
+            for ingredient in dish.ingredient {
+                for object in ingredientsObjects {
+                    if let id = object.value(forKey: "id") as? String, id == ingredient.id {
+                        setIngredients.adding(object)
+                    }
+                }
+            }
+            dishObject.ingredients = setIngredients
+            try currentContext.save()
+            loadSavedData()
+            updateScreen?()
+        } catch {
+            print("Save failed")
+        }
     }
-
-    func deleteRows(index: Int) {
-        dishes.remove(at: index)
-        updateScreen?()
+        
+        func deleteRows(indexPath: IndexPath) {
+            let dish = fetchController.object(at: indexPath)
+            currentContext.delete(dish)
+            do {
+                try currentContext.save()
+                loadSavedData()
+                updateScreen?()
+            } catch {
+                print(error)
+            }
     }
 }

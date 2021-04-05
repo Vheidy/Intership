@@ -6,21 +6,20 @@
     <entity name="Dish" representedClassName="Dish" syncable="YES" codeGenerationType="class">
         <attribute name="calories" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="cuisine" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="imageName" optional="YES" attributeType="String"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="typeDish" optional="YES" attributeType="String"/>
-        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient"/>
-        <relationship name="orderOfActions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Action"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="typeDish" attributeType="String"/>
+        <relationship name="ingredients" toMany="YES" deletionRule="Nullify" destinationEntity="Ingredient"/>
+        <relationship name="orderOfActions" toMany="YES" deletionRule="Nullify" destinationEntity="Action"/>
     </entity>
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES" codeGenerationType="class">
-        <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Ingredient" positionX="-409.625" positionY="-12.2734375" width="128" height="88"/>
-        <element name="Dish" positionX="-63" positionY="0" width="128" height="163"/>
         <element name="Action" positionX="-225" positionY="54" width="128" height="58"/>
+        <element name="Dish" positionX="-63" positionY="0" width="128" height="163"/>
+        <element name="Ingredient" positionX="-409.625" positionY="-12.2734375" width="128" height="73"/>
     </elements>
 </model>

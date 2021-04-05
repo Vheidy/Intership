@@ -11,6 +11,7 @@ import UIKit
 class EditRecipeScreenTableViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     private var dish: DishModel
+    
     // FIXME: Try to remove this and create new instance in methods
     private var imagePicker: UIImagePickerController
     
@@ -31,13 +32,13 @@ class EditRecipeScreenTableViewController: UITableViewController, UIImagePickerC
     // INIT, saveAction - action for save dish in mainScreen
     init(with model: EditScreenModel, saveAction: @escaping (_ dish: DishModel)->()) {
         self.saveDish = saveAction
-        self.dish = DishModel()
+
+        self.dish = DishModel(id: Date())
         imageView = nil
         self.imagePicker = UIImagePickerController()
         self.editModel = model
         super.init(nibName: nil, bundle: nil)
 
-//        print(NSTemporaryDirectory())
         
         setup()
     }
@@ -48,6 +49,8 @@ class EditRecipeScreenTableViewController: UITableViewController, UIImagePickerC
     
     // Needs to save dish in mainScreen and close editScreen
     @objc   func addRecipe() {
+
+        self.dish.id = Date()
         self.saveDish(dish)
         closeScreen()
     }

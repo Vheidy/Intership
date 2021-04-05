@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 struct DishModel {
     var name: String = ""
@@ -15,7 +16,8 @@ struct DishModel {
     var orderOfAction: [String] = []
     var imageName: String?
     var cuisine: String?
-    var calories: Int?
+    var calories: Int32?
+    var id: Date
 }
 
 struct DisplayItem {
@@ -35,16 +37,63 @@ protocol MainScreenViewModelProtocol: AnyObject {
 
 
 class DishService: MainScreenViewModelProtocol {
+    
     var dishes: [DishModel]
+//    var fetchController: NSFetchedResultsController<Dish>
     var updateScreen: (() -> ())?
+    
+    private let coreDataService: CoreDataService
+    private var entity: NSEntityDescription
+    private var currentContext: NSManagedObjectContext
     
     init(dishes: [DishModel]) {
         self.dishes = dishes
+        coreDataService = CoreDataService()
+        self.currentContext = coreDataService.persistentContainer.newBackgroundContext()
+        guard let entity = NSEntityDescription.entity(forEntityName: "Ingredient", in: currentContext) else {fatalError()}
+        self.entity = entity
+        
+        
+//        let request = NSFetchRequest<Dish>(entityName: "Dish")
+//        let sort = NSSortDescriptor(key: "id", ascending: false)
+//        request.sortDescriptors = [sort]
+//        
+//        fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: currentContext, sectionNameKeyPath: nil, cacheName: nil)
+//        //            fetchController.delegate = self
+//        
+//        //        fetchController.fetchRequest.predicate = commitPredicate
+//        
+//        do {
+//            try fetchController.performFetch()
+//            //            tableView.reloadData()
+//            updateScreen?()
+//        } catch {
+//            print("Fetch failed")
+//        }
     }
     
     func countCells() -> Int {
         return dishes.count
     }
+    
+//    func loadSavedData() {
+//        let request = NSFetchRequest<Dish>(entityName: "Dish")
+//        let sort = NSSortDescriptor(key: "id", ascending: false)
+//        request.sortDescriptors = [sort]
+//        
+//        fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: currentContext, sectionNameKeyPath: nil, cacheName: nil)
+//        //            fetchController.delegate = self
+//        
+//        //        fetchController.fetchRequest.predicate = commitPredicate
+//        
+//        do {
+//            try fetchController.performFetch()
+//            //            tableView.reloadData()
+//            updateScreen?()
+//        } catch {
+//            print("Fetch failed")
+//        }
+//    }
     
     func getFields(for index: Int) -> DisplayItem? {
         let dish = dishes[index]

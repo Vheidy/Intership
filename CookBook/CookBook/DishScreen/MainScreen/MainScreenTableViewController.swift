@@ -37,9 +37,8 @@ class MainScreenTableViewController: UITableViewController, NSFetchedResultsCont
     
     // Create and present EditScreen
     @objc func presentEditScreen() {
-        let editScreen = EditRecipeScreenTableViewController(with: EditScreenModel(), saveAction: self.addDish(_:))
+        let editScreen = EditDishViewController(with: EditScreenModel(), saveAction: self.addDish(_:))
         let navigationController = UINavigationController(rootViewController: editScreen)
-//        navigationController.navigationBar.barTintColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
         
         present(navigationController, animated: true, completion: nil)
     }

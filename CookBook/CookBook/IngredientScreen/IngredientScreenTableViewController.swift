@@ -68,14 +68,4 @@ class IngredientScreenTableViewController: UITableViewController {
         return cell
     }
     
-
-//    @objc func presentEditScreen() {
-//        let editScreen = IngredientEditTableViewController(nibName: nil, bundle: nil)
-//        let nc = UINavigationController(rootViewController: editScreen)
-//        nc.navigationBar.barTintColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
-//        editScreen.mainScreen = self
-//
-//        present(nc, animated: true, completion: nil)
-//    }
-    
 }

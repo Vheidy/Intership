@@ -16,9 +16,9 @@
 		7670D3692608C1A6007C97D4 /* IngredientEditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7670D3682608C1A6007C97D4 /* IngredientEditModel.swift */; };
 		7670D36D2608D443007C97D4 /* SelectIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7670D36C2608D443007C97D4 /* SelectIngredientsViewController.swift */; };
 		7670D39B2611BB93007C97D4 /* IngredientsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7670D3992611BB93007C97D4 /* IngredientsModel.xcdatamodeld */; };
-		7670D39F2611BDC6007C97D4 /* Entity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7670D39D2611BDC6007C97D4 /* Entity+CoreDataClass.swift */; };
-		7670D3A02611BDC6007C97D4 /* Entity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7670D39E2611BDC6007C97D4 /* Entity+CoreDataProperties.swift */; };
 		767E42D22608B77B001836BF /* IngredientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E42D12608B77B001836BF /* IngredientService.swift */; };
+		767FD812261B576C00945A5A /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767FD811261B576C00945A5A /* TableViewDelegate.swift */; };
+		767FD815261B57CF00945A5A /* ImagePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767FD814261B57CF00945A5A /* ImagePickerDelegate.swift */; };
 		76A8663326009FF900F80B6A /* DishService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A8663226009FF900F80B6A /* DishService.swift */; };
 		76A866362600A08E00F80B6A /* MainScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A866352600A08E00F80B6A /* MainScreenCell.swift */; };
 		76AB6D9325FF987E00F93B31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AB6D9225FF987E00F93B31 /* AppDelegate.swift */; };
@@ -41,9 +41,9 @@
 		7670D3682608C1A6007C97D4 /* IngredientEditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEditModel.swift; sourceTree = "<group>"; };
 		7670D36C2608D443007C97D4 /* SelectIngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectIngredientsViewController.swift; sourceTree = "<group>"; };
 		7670D39A2611BB93007C97D4 /* IngredientsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IngredientsModel.xcdatamodel; sourceTree = "<group>"; };
-		7670D39D2611BDC6007C97D4 /* Entity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataClass.swift"; sourceTree = "<group>"; };
-		7670D39E2611BDC6007C97D4 /* Entity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		767E42D12608B77B001836BF /* IngredientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientService.swift; sourceTree = "<group>"; };
+		767FD811261B576C00945A5A /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
+		767FD814261B57CF00945A5A /* ImagePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegate.swift; sourceTree = "<group>"; };
 		76A8663226009FF900F80B6A /* DishService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishService.swift; sourceTree = "<group>"; };
 		76A866352600A08E00F80B6A /* MainScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCell.swift; sourceTree = "<group>"; };
 		76AB6D8F25FF987E00F93B31 /* CookBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,8 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				7670D3992611BB93007C97D4 /* IngredientsModel.xcdatamodeld */,
-				7670D39D2611BDC6007C97D4 /* Entity+CoreDataClass.swift */,
-				7670D39E2611BDC6007C97D4 /* Entity+CoreDataProperties.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -138,6 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				76AB6DB225FF9FAA00F93B31 /* EditScreenTableViewController.swift */,
+				767FD811261B576C00945A5A /* TableViewDelegate.swift */,
+				767FD814261B57CF00945A5A /* ImagePickerDelegate.swift */,
 				7636BC212603948A000B8393 /* EditScreenModel.swift */,
 			);
 			path = EditDishScreen;
@@ -255,10 +255,10 @@
 				76E75E312614D1C800F3C1B4 /* TabBarViewController.swift in Sources */,
 				76AB6DC025FFA7F700F93B31 /* IngredientScreenTableViewController.swift in Sources */,
 				76AB6DAC25FF9CFC00F93B31 /* MainScreenTableViewController.swift in Sources */,
+				767FD812261B576C00945A5A /* TableViewDelegate.swift in Sources */,
+				767FD815261B57CF00945A5A /* ImagePickerDelegate.swift in Sources */,
 				7670D3622608BEA2007C97D4 /* IngredientsEditScreen.swift in Sources */,
-				7670D39F2611BDC6007C97D4 /* Entity+CoreDataClass.swift in Sources */,
 				76A8663326009FF900F80B6A /* DishService.swift in Sources */,
-				7670D3A02611BDC6007C97D4 /* Entity+CoreDataProperties.swift in Sources */,
 				7670D36D2608D443007C97D4 /* SelectIngredientsViewController.swift in Sources */,
 				7670D39B2611BB93007C97D4 /* IngredientsModel.xcdatamodeld in Sources */,
 				7636BC222603948A000B8393 /* EditScreenModel.swift in Sources */,

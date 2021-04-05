@@ -107,6 +107,7 @@ class DishService {
         return displayModel
     }
     
+    //FIXME: Add fetch Ingredients for id and split
     func addDish(dish: DishModel) {
         let dishObject = Dish(context: currentContext)
         dishObject.name = dish.name
@@ -126,22 +127,18 @@ class DishService {
         dishObject.orderOfActions =  setActions
         // Fetch ingredients from CoreData
         do {
-            let setIngredients = NSSet()
-            let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
-            let ingredientsObjects = try currentContext.fetch(fetchRequest)
+            let ingredientService = IngredientsService(updateViewData: nil)
             for ingredient in dish.ingredient {
-                for object in ingredientsObjects {
-                    if let id = object.value(forKey: "id") as? String, id == ingredient.id {
-                        setIngredients.adding(object)
-                    }
+                if let object = ingredientService.fetchIngredient(for: ingredient.id) {
+                    dishObject.addToIngredients(object)
                 }
             }
-            dishObject.ingredients = setIngredients
             try currentContext.save()
             loadSavedData()
             updateScreen?()
         } catch {
             print("Save failed")
+            print(error)
         }
     }
         

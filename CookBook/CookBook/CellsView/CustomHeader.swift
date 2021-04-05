@@ -13,12 +13,15 @@ class CustomHeader: UITableViewHeaderFooterView {
     var section: Int?
     var mainSubView: UIView?
     
-    var action: (() -> ())?
+    // Adding custom cells in section in EditController
+    var action: VoidCallback
     
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
-        
+    init(title: String, section: Int, addCells: @escaping VoidCallback) {
+        self.action = addCells
+        super.init(reuseIdentifier: nil)
         configureContent()
+        self.title?.text = title
+        self.section = section
     }
     
     private func configureContent() {
@@ -68,9 +71,9 @@ class CustomHeader: UITableViewHeaderFooterView {
         ])
     }
     
-    // Action for add cell in section
+    // Action for add cell in section of EditController
     @objc func didTap() {
-        action?()
+        action()
     }
     
     required init?(coder: NSCoder) {

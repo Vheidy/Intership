@@ -55,27 +55,37 @@ class IngredientsService: IngredientServiceProtocol {
     private var ingredients = [IngredientModel]()
     private let coreDataService: CoreDataService
     
-//    private var entity: NSEntityDescription
-//    private var currentContext: NSManagedObjectContext
     
     private var updateView: VoidCallback?
     
     init(updateViewData: VoidCallback?) {
         coreDataService = CoreDataService()
-//        self.currentContext = coreDataService.persistentContainer.newBackgroundContext()
-//        guard let entity = NSEntityDescription.entity(forEntityName: "Ingredient", in: currentContext) else {fatalError()}
-//        self.entity = entity
         self.updateView = updateViewData
         
         self.updateData()
     }
     
+    func fetchIngredient(for requiredID: String) -> Ingredient? {
+        let currentContext = coreDataService.persistentContainer.newBackgroundContext()
+        let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
+        do {
+            let ingredientsObjects = try currentContext.fetch(fetchRequest)
+            for element in ingredientsObjects {
+                if let _ = element.value(forKey: "name") as? String, let id = element.value(forKey: "id") as? String, id == requiredID {
+                    return element
+                }
+            }
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
     // Add ingredient at ingredients array and CoreData
     func addIngredient(_ ingredient: IngredientModel) {
-//        DispatchQueue.global(qos: .default).async { [unowned self] in
-        let currentContext = coreDataService.persistentContainer.newBackgroundContext()
-
-//            let ingredientObject = NSManagedObject(entity: entity, insertInto: currentContext)
+        DispatchQueue.global(qos: .default).async { [unowned self] in
+            let currentContext = coreDataService.persistentContainer.newBackgroundContext()
+            
             let ingredientObject = Ingredient(context: currentContext)
             ingredientObject.id = ingredient.id
             ingredientObject.name = ingredient.name
@@ -88,13 +98,12 @@ class IngredientsService: IngredientServiceProtocol {
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
-//        }
-        
+        }
     }
     
     // Update the ingredients array from coreData
     private func updateData() {
-//        DispatchQueue.global(qos: .default).async { [unowned self] in
+        DispatchQueue.global(qos: .default).async { [unowned self] in
         let currentContext = coreDataService.persistentContainer.newBackgroundContext()
 
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Ingredient")
@@ -110,13 +119,13 @@ class IngredientsService: IngredientServiceProtocol {
             } catch {
                 print(error)
             }
-//        }
+        }
     }
     
     //Delete ingredients from ingredients array and CoreData
     func deleteIngredient(index: Int) {
         guard ingredients.indices.contains(index) else {return}
-//        DispatchQueue.global(qos: .default).async { [unowned self] in
+        DispatchQueue.global(qos: .default).async { [unowned self] in
         let currentContext = coreDataService.persistentContainer.newBackgroundContext()
             let ingredient = ingredients[index]
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Ingredient")
@@ -127,15 +136,15 @@ class IngredientsService: IngredientServiceProtocol {
                         currentContext.delete(object)
                         try currentContext.save()
                         updateData()
-//                        DispatchQueue.main.async {
+                        DispatchQueue.main.async {
                             updateView?()
-//                        }
+                        }
                     }
                 }
             } catch {
                 print(error)
             }
-//        }
+        }
     }
     
     //Get ingredient for indexPath

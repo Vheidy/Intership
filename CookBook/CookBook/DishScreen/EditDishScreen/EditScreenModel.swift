@@ -40,13 +40,24 @@ struct EditScreenModelSection {
 }
 
 class EditScreenModel {
-    
+    // Contains a structure of view in Edit Screen
     var array: [EditScreenModelSection] = [ EditScreenModelSection(title: "Image", needsHeader: .notNeeded, items: [.image]),
                                             EditScreenModelSection(title: "Base Info", needsHeader: .notNeeded, items: [.inputItem(placeholder: "Dish Name"), .inputItem(placeholder: "Dish Type")]),
                                             EditScreenModelSection(title: "Ingredients", needsHeader: .need(title: "Ingredients"), items: []),
                                             EditScreenModelSection(title: "Order of Action", needsHeader: .need(title: "Order of Action"), items: [.inputItem(placeholder: "Action")]),
                                             EditScreenModelSection(title: "Extra", needsHeader: .notNeeded, items: [.inputItem(placeholder: "Cuisine"), .inputItem(placeholder: "Calories")])
     ]
+    
+    var sectionCount: Int {
+        array.count
+   }
+    
+    // Return type of the cell
+    func getRow(for indexPath: IndexPath) -> EditScreenItemType? {
+        guard array.indices.contains(indexPath.section), array[indexPath.section].items.indices.contains(indexPath.row) else { return nil }
+        return array[indexPath.section].items[indexPath.row]
+    }
+   
     
     // Add the new cell in section and return the indexPath of this cell
     func appEnd(section: Int, ingredient: IngredientModel?) -> IndexPath {
@@ -74,50 +85,51 @@ class EditScreenModel {
        return true
    }
    
-    func getSectionCount() -> Int {
-        array.count
-   }
-   
+    // Количесто рядов в секции
     func getRowsInSectionCount(section: Int) -> Int {
         guard let mySection = getSection(section: section) else { return 0 }
       return mySection.items.count
    }
    
+    // Возвращает ряды секции
    func getRowsInSection(section: Int) -> [EditScreenItemType] {
     guard let mySection = getSection(section: section) else { return [] }
     return mySection.items
    }
    
+    // Возвращает название секции
     func getTitleSection(section: Int) -> String? {
         getSection(section: section)?.title
    }
     
+    // Возвращает секцию
     func getSection(section: Int) -> EditScreenModelSection? {
         guard array.indices.contains(section) else { return nil }
         return array[section]
     }
     
-    // Get the data from url
-    func fetchImage(from url: URL) -> Data? {
-        do {
-            let data = try Data(contentsOf: url)
-            return data
-        } catch {
-            print(error)
-            return nil
-        }
-    }
+    // FIXME: add get Image from name
+//    func fetchImage(from url: URL) -> Data? {
+//        do {
+//            let data = try Data(contentsOf: url)
+//            return data
+//        } catch {
+//            print(error)
+//            return nil
+//        }
+//    }
     
-    func getDocumentPath() -> String {
+    
+    func getDocumentPath(with name: String) -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0]
-        return documentsDirectory as String
+        var path = paths[0] as String
+        path.append(name)
+        return path
     }
     
     func saveImageToDocuments(image: UIImage, withName name: String){
         if let data = image.pngData() {
-            var path = getDocumentPath()
-            path.append(name)
+            let path = getDocumentPath(with: name)
             let imageFileUrl = URL(fileURLWithPath: path)
             do {
                 try data.write(to: imageFileUrl)
@@ -127,14 +139,6 @@ class EditScreenModel {
             }
         }
     }
-    
-    
-    func getItemTypeForIndexPath(indexPath: IndexPath) -> EditScreenItemType? {
-       guard array.indices.contains(indexPath.section) else { return nil }
-       let section = array[indexPath.section]
-       guard section.items.indices.contains(indexPath.row) else { return nil }
-       return section.items[indexPath.row]
-   }
     
 }
 

@@ -126,13 +126,16 @@ class DishService {
         }
         dishObject.orderOfActions =  setActions
         // Fetch ingredients from CoreData
+        let setIngredients = NSSet()
         do {
             let ingredientService = IngredientsService(updateViewData: nil)
             for ingredient in dish.ingredient {
                 if let object = ingredientService.fetchIngredient(for: ingredient.id) {
-                    dishObject.addToIngredients(object)
+                    setIngredients.adding(object)
+                
                 }
             }
+            dishObject.addToIngredients(setIngredients)
             try currentContext.save()
             loadSavedData()
             updateScreen?()

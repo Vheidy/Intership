@@ -13,7 +13,7 @@ class SelectIngredientsViewController: UITableViewController {
     var saveSelectedCells: (_ cells: [IngredientModel]) -> ()
     
     init(saveCellsAction: @escaping (_ cells: [IngredientModel]) -> ()) {
-        ingredientService = IngredientsService(updateViewData: nil)
+        ingredientService = IngredientsService()
         saveSelectedCells = saveCellsAction
         super.init(nibName: nil, bundle: nil)
         setup()
@@ -22,6 +22,13 @@ class SelectIngredientsViewController: UITableViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        ingredientService.fetchAllElements { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     private func setup() {

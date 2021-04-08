@@ -13,7 +13,8 @@ class EditDishViewController: UIViewController, UINavigationControllerDelegate {
     var dish: DishModel
     var tableView: UITableView
     var editModel: EditScreenModel
-     var imageView: UIImage?
+    var imageView: UIImage?
+    var isFull: Bool = false
     
     
     private var saveDish: (_ dish: DishModel)->()
@@ -28,11 +29,17 @@ class EditDishViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     // INIT, saveAction - action for save dish in mainScreen
-    init(with model: EditScreenModel, saveAction: @escaping (_ dish: DishModel)->()) {
+    init(with model: EditScreenModel, saveAction: @escaping (_ dish: DishModel)->(), whichIsFull dishModel: DishModel?) {
         self.saveDish = saveAction
-
-        self.dish = DishModel(id: Date())
         self.editModel = model
+        if let dish = dishModel {
+            self.dish = dish
+            isFull = true
+            model.setDish(dish)
+        } else {
+            self.dish = DishModel(id: Date())
+        }
+
         self.tableView = UITableView()
         
         super.init(nibName: nil, bundle: nil)
@@ -47,7 +54,7 @@ class EditDishViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     // Needs to save dish in mainScreen and close editScreen
-    @objc   func addRecipe() {
+    @objc func addRecipe() {
         self.saveDish(dish)
         closeScreen()
     }
@@ -64,7 +71,7 @@ class EditDishViewController: UIViewController, UINavigationControllerDelegate {
     
     // Present screen with ingredient selection functionality
     @objc func presentChooseIngredientScreen() {
-        let selectViewController = SelectIngredientsViewController(saveCellsAction: addStandartCells(_:))
+        let selectViewController = SelectIngredientsViewController(saveCellsAction: addIngredientCells)
         
         navigationController?.pushViewController(selectViewController, animated: true)
     }
@@ -72,12 +79,12 @@ class EditDishViewController: UIViewController, UINavigationControllerDelegate {
     // MARK: - Adding cells in sections
     
     // Adding the cells with one label + updateButtomDone
-    private func addStandartCells(_ cells: [IngredientModel]) {
+    private func addIngredientCells(_ models: [IngredientModel]) {
         tableView.beginUpdates()
-        for cell  in cells {
-            let indexPath = editModel.appEnd(section: 2, ingredient: cell)
+        for model in models {
+            let indexPath = editModel.appEnd(section: 2, ingredient: model)
             tableView.insertRows(at: [indexPath], with: .automatic)
-            dish.ingredient.append(cell)
+            dish.ingredient.append(model)
         }
         tableView.endUpdates()
         updateButtonDone()
@@ -92,7 +99,7 @@ class EditDishViewController: UIViewController, UINavigationControllerDelegate {
         tableView.endUpdates()
         
         if isHightlight {
-            guard let cell = tableView.cellForRow(at: indexPath) as? StandartViewCell else { return }
+            guard let cell = tableView.cellForRow(at: indexPath) as? InputViewCell else { return }
             addBorder(for: cell)
         }
         updateButtonDone()
@@ -102,7 +109,7 @@ class EditDishViewController: UIViewController, UINavigationControllerDelegate {
     
     // Check can the done button be enabled
     func updateButtonDone() {
-        if !checkMainFields() {
+        if !checkMainFields {
             isHightlight = true
             navigationItem.rightBarButtonItem?.isEnabled = false
 //            createDish()
@@ -114,7 +121,7 @@ class EditDishViewController: UIViewController, UINavigationControllerDelegate {
     
     // FIXME: MOVE to model
     // Check if the required cells are filled (Name, Type, Ingredients, Actions)
-    private func checkMainFields() -> Bool {
+    private var checkMainFields: Bool {
         var flag = true
         for sectionNum in 1...3 {
             let rows = editModel.getRowsInSection(section: sectionNum)
@@ -123,7 +130,7 @@ class EditDishViewController: UIViewController, UINavigationControllerDelegate {
                 break
             }
             for row in rows.indices {
-                if let cell = tableView.cellForRow(at: IndexPath(row: row, section: sectionNum)) as? StandartViewCell, let textCell = cell.textField?.text, textCell.isEmpty {
+                if let cell = tableView.cellForRow(at: IndexPath(row: row, section: sectionNum)) as? InputViewCell, let textCell = cell.textField?.text, textCell.isEmpty {
                     flag = false
                 }
             }
@@ -136,14 +143,14 @@ class EditDishViewController: UIViewController, UINavigationControllerDelegate {
         for sectionNum in 1...3 {
             let rows = editModel.getRowsInSection(section: sectionNum)
             for row in rows.indices {
-                if let cell = tableView.cellForRow(at: IndexPath(row: row, section: sectionNum)) as? StandartViewCell, let textCell = cell.textField?.text, textCell.isEmpty {
+                if let cell = tableView.cellForRow(at: IndexPath(row: row, section: sectionNum)) as? InputViewCell, let textCell = cell.textField?.text, textCell.isEmpty {
                     addBorder(for: cell)
                 }
             }
         }
     }
   
-    private func addBorder(for cell: StandartViewCell) {
+    private func addBorder(for cell: InputViewCell) {
         cell.textField?.layer.borderWidth = 2
         cell.textField?.layer.borderColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.2).cgColor
     }
@@ -186,7 +193,7 @@ class EditDishViewController: UIViewController, UINavigationControllerDelegate {
     private func addRegister() {
         tableView.register(CustomHeader.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
         tableView.register(ImageEditCell.self, forCellReuseIdentifier: "ImageEditCell")
-        tableView.register(StandartViewCell.self, forCellReuseIdentifier: "StandartViewCell")
+        tableView.register(InputViewCell.self, forCellReuseIdentifier: "InputViewCell")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
     }
     

@@ -10,7 +10,7 @@
 		761AD4E926134138002D1C7F /* SelectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761AD4E826134138002D1C7F /* SelectTableViewCell.swift */; };
 		7635C12426021F3900BE3B89 /* ImageEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7635C12326021F3900BE3B89 /* ImageEditCell.swift */; };
 		7636BC222603948A000B8393 /* EditScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7636BC212603948A000B8393 /* EditScreenModel.swift */; };
-		7652733826023DCB008F9C68 /* StandartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7652733726023DCB008F9C68 /* StandartViewCell.swift */; };
+		7652733826023DCB008F9C68 /* InputViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7652733726023DCB008F9C68 /* InputViewCell.swift */; };
 		7655E28A260371960049C533 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7655E289260371960049C533 /* CustomHeader.swift */; };
 		7670D3622608BEA2007C97D4 /* IngredientsEditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7670D3612608BEA2007C97D4 /* IngredientsEditScreen.swift */; };
 		7670D3692608C1A6007C97D4 /* IngredientEditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7670D3682608C1A6007C97D4 /* IngredientEditModel.swift */; };
@@ -19,6 +19,9 @@
 		767E42D22608B77B001836BF /* IngredientService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E42D12608B77B001836BF /* IngredientService.swift */; };
 		767FD812261B576C00945A5A /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767FD811261B576C00945A5A /* TableViewDelegate.swift */; };
 		767FD815261B57CF00945A5A /* ImagePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767FD814261B57CF00945A5A /* ImagePickerDelegate.swift */; };
+		767FD81D261DEE6400945A5A /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767FD81C261DEE6400945A5A /* SwiftUIView.swift */; };
+		767FD822261EF8D600945A5A /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767FD821261EF8D600945A5A /* CoreDataService.swift */; };
+		767FD828261EFA1C00945A5A /* LoadDishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767FD827261EFA1C00945A5A /* LoadDishViewController.swift */; };
 		76A8663326009FF900F80B6A /* DishService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A8663226009FF900F80B6A /* DishService.swift */; };
 		76A866362600A08E00F80B6A /* MainScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A866352600A08E00F80B6A /* MainScreenCell.swift */; };
 		76AB6D9325FF987E00F93B31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AB6D9225FF987E00F93B31 /* AppDelegate.swift */; };
@@ -35,7 +38,7 @@
 		761AD4E826134138002D1C7F /* SelectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTableViewCell.swift; sourceTree = "<group>"; };
 		7635C12326021F3900BE3B89 /* ImageEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEditCell.swift; sourceTree = "<group>"; };
 		7636BC212603948A000B8393 /* EditScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreenModel.swift; sourceTree = "<group>"; };
-		7652733726023DCB008F9C68 /* StandartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandartViewCell.swift; sourceTree = "<group>"; };
+		7652733726023DCB008F9C68 /* InputViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewCell.swift; sourceTree = "<group>"; };
 		7655E289260371960049C533 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		7670D3612608BEA2007C97D4 /* IngredientsEditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsEditScreen.swift; sourceTree = "<group>"; };
 		7670D3682608C1A6007C97D4 /* IngredientEditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEditModel.swift; sourceTree = "<group>"; };
@@ -44,6 +47,9 @@
 		767E42D12608B77B001836BF /* IngredientService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientService.swift; sourceTree = "<group>"; };
 		767FD811261B576C00945A5A /* TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
 		767FD814261B57CF00945A5A /* ImagePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegate.swift; sourceTree = "<group>"; };
+		767FD81C261DEE6400945A5A /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		767FD821261EF8D600945A5A /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		767FD827261EFA1C00945A5A /* LoadDishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDishViewController.swift; sourceTree = "<group>"; };
 		76A8663226009FF900F80B6A /* DishService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishService.swift; sourceTree = "<group>"; };
 		76A866352600A08E00F80B6A /* MainScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCell.swift; sourceTree = "<group>"; };
 		76AB6D8F25FF987E00F93B31 /* CookBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CookBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,11 +78,9 @@
 		7636BC2426048F0D000B8393 /* CellsView */ = {
 			isa = PBXGroup;
 			children = (
-				76A866352600A08E00F80B6A /* MainScreenCell.swift */,
 				7655E289260371960049C533 /* CustomHeader.swift */,
 				7635C12326021F3900BE3B89 /* ImageEditCell.swift */,
-				7652733726023DCB008F9C68 /* StandartViewCell.swift */,
-				761AD4E826134138002D1C7F /* SelectTableViewCell.swift */,
+				7652733726023DCB008F9C68 /* InputViewCell.swift */,
 			);
 			path = CellsView;
 			sourceTree = "<group>";
@@ -85,8 +89,55 @@
 			isa = PBXGroup;
 			children = (
 				7670D3992611BB93007C97D4 /* IngredientsModel.xcdatamodeld */,
+				767FD821261EF8D600945A5A /* CoreDataService.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		767FD818261DE51100945A5A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7670D3A22611BDD3007C97D4 /* CoreData */,
+				76A8663226009FF900F80B6A /* DishService.swift */,
+				767E42D12608B77B001836BF /* IngredientService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		767FD819261DE51E00945A5A /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				767FD826261EF9D900945A5A /* LoadDishScreen */,
+				76AB6DA925FF9CAA00F93B31 /* DishScreen */,
+				76AB6DBE25FFA7D300F93B31 /* IngredientScreen */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		767FD81A261DE57400945A5A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		767FD81F261EF84600945A5A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7636BC2426048F0D000B8393 /* CellsView */,
+				76AB6DB225FF9FAA00F93B31 /* EditScreenTableViewController.swift */,
+				767FD811261B576C00945A5A /* TableViewDelegate.swift */,
+				767FD814261B57CF00945A5A /* ImagePickerDelegate.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		767FD826261EF9D900945A5A /* LoadDishScreen */ = {
+			isa = PBXGroup;
+			children = (
+				767FD827261EFA1C00945A5A /* LoadDishViewController.swift */,
+			);
+			path = LoadDishScreen;
 			sourceTree = "<group>";
 		};
 		76AB6D8625FF987E00F93B31 = {
@@ -111,10 +162,9 @@
 				76AB6D9225FF987E00F93B31 /* AppDelegate.swift */,
 				76AB6D9425FF987E00F93B31 /* SceneDelegate.swift */,
 				76E75E302614D1C800F3C1B4 /* TabBarViewController.swift */,
-				7636BC2426048F0D000B8393 /* CellsView */,
-				76AB6DA925FF9CAA00F93B31 /* DishScreen */,
-				76AB6DBE25FFA7D300F93B31 /* IngredientScreen */,
-				7670D3A22611BDD3007C97D4 /* CoreData */,
+				767FD81A261DE57400945A5A /* Common */,
+				767FD819261DE51E00945A5A /* Modules */,
+				767FD818261DE51100945A5A /* Services */,
 				76AB6D9D25FF988000F93B31 /* LaunchScreen.storyboard */,
 				76AB6DA025FF988000F93B31 /* Info.plist */,
 				76AB6D9B25FF988000F93B31 /* Assets.xcassets */,
@@ -135,10 +185,9 @@
 		76AB6DB125FF9F5B00F93B31 /* EditDishScreen */ = {
 			isa = PBXGroup;
 			children = (
-				76AB6DB225FF9FAA00F93B31 /* EditScreenTableViewController.swift */,
-				767FD811261B576C00945A5A /* TableViewDelegate.swift */,
-				767FD814261B57CF00945A5A /* ImagePickerDelegate.swift */,
+				767FD81F261EF84600945A5A /* View */,
 				7636BC212603948A000B8393 /* EditScreenModel.swift */,
+				767FD81C261DEE6400945A5A /* SwiftUIView.swift */,
 			);
 			path = EditDishScreen;
 			sourceTree = "<group>";
@@ -147,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				76AB6DBF25FFA7F700F93B31 /* IngredientScreenTableViewController.swift */,
-				767E42D12608B77B001836BF /* IngredientService.swift */,
 				76AB6DC325FFA80000F93B31 /* EditIngredientScreen */,
 			);
 			path = IngredientScreen;
@@ -165,8 +213,8 @@
 		76AB6DC825FFAEA100F93B31 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
+				76A866352600A08E00F80B6A /* MainScreenCell.swift */,
 				76AB6DAB25FF9CFC00F93B31 /* MainScreenTableViewController.swift */,
-				76A8663226009FF900F80B6A /* DishService.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -175,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				7670D36C2608D443007C97D4 /* SelectIngredientsViewController.swift */,
+				761AD4E826134138002D1C7F /* SelectTableViewCell.swift */,
 			);
 			path = SelectIngredientsScreen;
 			sourceTree = "<group>";
@@ -250,12 +299,15 @@
 			files = (
 				7635C12426021F3900BE3B89 /* ImageEditCell.swift in Sources */,
 				76AB6DB325FF9FAA00F93B31 /* EditScreenTableViewController.swift in Sources */,
-				7652733826023DCB008F9C68 /* StandartViewCell.swift in Sources */,
+				7652733826023DCB008F9C68 /* InputViewCell.swift in Sources */,
 				76A866362600A08E00F80B6A /* MainScreenCell.swift in Sources */,
 				76E75E312614D1C800F3C1B4 /* TabBarViewController.swift in Sources */,
+				767FD828261EFA1C00945A5A /* LoadDishViewController.swift in Sources */,
 				76AB6DC025FFA7F700F93B31 /* IngredientScreenTableViewController.swift in Sources */,
 				76AB6DAC25FF9CFC00F93B31 /* MainScreenTableViewController.swift in Sources */,
 				767FD812261B576C00945A5A /* TableViewDelegate.swift in Sources */,
+				767FD822261EF8D600945A5A /* CoreDataService.swift in Sources */,
+				767FD81D261DEE6400945A5A /* SwiftUIView.swift in Sources */,
 				767FD815261B57CF00945A5A /* ImagePickerDelegate.swift in Sources */,
 				7670D3622608BEA2007C97D4 /* IngredientsEditScreen.swift in Sources */,
 				76A8663326009FF900F80B6A /* DishService.swift in Sources */,

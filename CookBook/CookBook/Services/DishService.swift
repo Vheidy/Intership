@@ -38,7 +38,7 @@ protocol MainScreenViewModelProtocol: AnyObject {
 
 class DishService {
     
-    var dishes: [DishModel]
+//    var dishes: [DishModel]
     var fetchController: NSFetchedResultsController<Dish>
     var updateScreen: (() -> ())?
     
@@ -57,7 +57,7 @@ class DishService {
     }
     
     init(dishes: [DishModel]) {
-        self.dishes = dishes
+//        self.dishes = dishes
         coreDataService = CoreDataService()
         self.currentContext = coreDataService.persistentContainer.newBackgroundContext()
         
@@ -73,8 +73,20 @@ class DishService {
         } catch {
             print("Fetch failed")
         }
-        
     }
+    
+    
+    func deleteRows(indexPath: IndexPath) {
+        let dish = fetchController.object(at: indexPath)
+        currentContext.delete(dish)
+        do {
+            try currentContext.save()
+            loadSavedData()
+            updateScreen?()
+        } catch {
+            print(error)
+        }
+}
     
     func loadSavedData() {
         let request = NSFetchRequest<Dish>(entityName: "Dish")
@@ -89,8 +101,34 @@ class DishService {
         }
     }
     
-    func countCells() -> Int {
-        return dishes.count
+    //Return dish for indexPath
+    func fetchDish(for indexPath: IndexPath) -> DishModel? {
+        guard let dishObjects = fetchController.fetchedObjects, dishObjects.indices.contains(indexPath.row) else { return nil }
+        let dishObject = dishObjects[indexPath.row]
+        guard let ingredients = dishObject.ingredients as? Set<Ingredient>, let arrayOfIngredients = transform(ingredients: ingredients),  let actions = dishObject.orderOfActions as? Set<Action>, let arrayOfActions = transform(actions: actions), let name = dishObject.name, let typeDish = dishObject.typeDish, let id = dishObject.id  else { return nil}
+        
+        return DishModel(name: name, typeDish: typeDish, ingredient: arrayOfIngredients, orderOfAction: arrayOfActions, imageName: dishObject.imageName, cuisine: dishObject.cuisine, calories: dishObject.calories, id: id)
+    }
+    
+    // Transforn [Action] -> [String]
+    private func transform(actions: Set<Action>) -> [String]? {
+        var arrayOfActions: [String] = []
+        for action in actions {
+            guard let actionText = action.text else { return nil }
+            arrayOfActions.append(actionText)
+        }
+        return arrayOfActions
+    }
+    
+    // Transform [Ingredient] -> [IngredientModel]
+    private func transform(ingredients: Set<Ingredient>) -> [IngredientModel]? {
+        var arrayOfIngredients: [IngredientModel] = []
+        for ingredient in ingredients {
+            guard let name = ingredient.name, let id = ingredient.id else { return nil }
+            let ingredientModel = IngredientModel(name: name, id: id)
+            arrayOfIngredients.append(ingredientModel)
+        }
+        return arrayOfIngredients
     }
     
     func getFields(for indexPath: IndexPath) -> DisplayItem? {
@@ -107,7 +145,10 @@ class DishService {
         return displayModel
     }
     
-    //FIXME: Add fetch Ingredients for id and split
+
+    //MARK: - Add Dish in Core Data
+
+    // Transform DishModel in DishObject and save it in Coredata
     func addDish(dish: DishModel) {
         let dishObject = Dish(context: currentContext)
         dishObject.name = dish.name
@@ -117,25 +158,13 @@ class DishService {
         dishObject.imageName = dish.imageName
         dishObject.calories = dish.calories ?? 0
         
-        // Transform [String] -> NSSet<Action>
-        let setActions = NSSet()
-        for action in dish.orderOfAction {
-            let actionObject = Action(context: currentContext)
-            actionObject.text = action
-            setActions.adding(actionObject)
-        }
-        dishObject.orderOfActions =  setActions
-        // Fetch ingredients from CoreData
-        let setIngredients = NSSet()
+        
+        transormActionsInObjects(dish, dishObject)
+        addIngredientsandSaveContext(dish, dishObject)
+        
         do {
-            let ingredientService = IngredientsService(updateViewData: nil)
-            for ingredient in dish.ingredient {
-                if let object = ingredientService.fetchIngredient(for: ingredient.id) {
-                    setIngredients.adding(object)
-                
-                }
-            }
-            dishObject.addToIngredients(setIngredients)
+
+            //            dishObject.addToIngredients(setIngredients)
             try currentContext.save()
             loadSavedData()
             updateScreen?()
@@ -144,16 +173,28 @@ class DishService {
             print(error)
         }
     }
-        
-        func deleteRows(indexPath: IndexPath) {
-            let dish = fetchController.object(at: indexPath)
-            currentContext.delete(dish)
-            do {
-                try currentContext.save()
-                loadSavedData()
-                updateScreen?()
-            } catch {
-                print(error)
-            }
+    
+    // Transform [String] -> NSSet<Action>
+    private func transormActionsInObjects(_ dish: DishModel, _ dishObject: Dish) {
+        var setActions = Set<Action>()
+        for action in dish.orderOfAction {
+            let actionObject = Action(context: currentContext)
+            actionObject.text = action
+            setActions.insert(actionObject)
+        }
+        dishObject.orderOfActions = setActions as NSSet
     }
+    
+    // Fetch ingredients from CoreData
+    private func addIngredientsandSaveContext(_ dish: DishModel, _ dishObject: Dish) {
+        var setIngredients = Set<Ingredient>()
+        let ingredientService = IngredientsService()
+        let ingredientIDs = dish.ingredient.map({ $0.id })
+        let objects = ingredientService.fetchIngredient(for: ingredientIDs, context: currentContext)
+        for object in objects {
+            setIngredients.insert(object)
+        }
+        dishObject.ingredients = setIngredients as NSSet
+    }
+
 }

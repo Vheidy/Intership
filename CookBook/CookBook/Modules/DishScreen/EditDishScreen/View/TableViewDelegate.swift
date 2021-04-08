@@ -64,8 +64,8 @@ extension EditDishViewController: UITableViewDelegate, UITableViewDataSource {
             }
             cell.addPhoto = self.addPhoto
             return cell
-        case .inputItem(let placeholder):
-            return createInputItem(placeholder: placeholder, indexPath: indexPath)
+        case .inputItem(let placeholder,  let inputedText):
+            return createInputItem(placeholder: placeholder, indexPath: indexPath, inputedText: inputedText)
         case .labelItem(let title):
             return createLabelItem(title: title, indexPath: indexPath)
             
@@ -80,10 +80,13 @@ extension EditDishViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    private func createInputItem(placeholder: String, indexPath: IndexPath) -> StandartViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "StandartViewCell", for: indexPath) as? StandartViewCell else { return StandartViewCell() }
+    private func createInputItem(placeholder: String, indexPath: IndexPath, inputedText: String?) -> InputViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "InputViewCell", for: indexPath) as? InputViewCell else { return InputViewCell() }
         
         cell.configure(with: placeholder)
+        if isFull {
+            cell.textField?.text = inputedText ?? ""
+        }
         cell.textField?.delegate = self
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         return cell

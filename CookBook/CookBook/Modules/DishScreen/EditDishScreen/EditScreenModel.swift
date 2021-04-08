@@ -22,9 +22,20 @@ import UIKit
 //    ]
 //}
 
+//struct DishModel {
+//    var name: String = ""
+//    var typeDish: String = ""
+//    var ingredient: [IngredientModel] = []
+//    var orderOfAction: [String] = []
+//    var imageName: String?
+//    var cuisine: String?
+//    var calories: Int32?
+//    var id: Date
+//}
+
 enum EditScreenItemType {
     case image
-    case inputItem(placeholder: String)
+    case inputItem(placeholder: String, inputedText: String?)
     case labelItem(title: String)
 }
 
@@ -33,24 +44,84 @@ enum EditScreenHeaderType {
     case notNeeded
 }
 
+
+
 struct EditScreenModelSection {
     let title: String
-    let needsHeader: EditScreenHeaderType
+//    let section: EditScreenSectionType
+    var needsHeader: EditScreenHeaderType = .notNeeded
+    var isRemovable: Bool = false
     var items: [EditScreenItemType]
+    
+    func checkRemavable() -> Bool {
+        isRemovable && items.count > 1
+    }
+}
+
+enum EditScreenSectionType {
+    case photoHeader
+    case baseInfo
+    case ingredients
+    case actions
+    case extraInfo
+}
+
+enum EditScreenBaseInfoType {
+    case title
+    case type
+}
+
+enum EditScreenConvertationModelHelper {
+
+
+    static func convertate(with dish: DishModel) -> [EditScreenModelSection] {
+        var array = [EditScreenModelSection]()
+
+        array.append(EditScreenModelSection(title: "Image", items: [.image]))
+        array.append(EditScreenModelSection(title: "Base Info", items: [.inputItem(placeholder: "Dish Name", inputedText: dish.name), .inputItem(placeholder: "Dish Type", inputedText: dish.typeDish)]))
+        
+        var ingredientItems = [EditScreenItemType]()
+        for ingredient in dish.ingredient {
+            ingredientItems.append(.labelItem(title: ingredient.name))
+        }
+        array.append(EditScreenModelSection(title: "Ingredients", needsHeader: .need(title: "Ingredients"), isRemovable: true, items: ingredientItems))
+
+        var actionsItems = [EditScreenItemType]()
+        for action in dish.orderOfAction {
+            actionsItems.append(.inputItem(placeholder: "Action", inputedText: action))
+        }
+        array.append(EditScreenModelSection(title: "Order of Action", needsHeader: .need(title: "Order of Action"), isRemovable: true, items: actionsItems))
+        let calories: String = (dish.calories != nil && dish.calories != 0) ? String(dish.calories!) : ""
+        array.append(EditScreenModelSection(title: "Extra", items: [.inputItem(placeholder: "Cuisine", inputedText: dish.cuisine), .inputItem(placeholder: "Calories", inputedText: calories)]))
+        
+//        array.append(EditScreenModelSection(title: "Extra", items: [.inputItem(placeholder: "Cuisine", inputedText: dish.cuisine), .inputItem(placeholder: "Calories", inputedText: String(dish.calories)?)]))
+        
+        return array
+    }
+
+
 }
 
 class EditScreenModel {
+    
+    //    var sectionNames = ["Image", "Base Info", ]
+    
     // Contains a structure of view in Edit Screen
-    var array: [EditScreenModelSection] = [ EditScreenModelSection(title: "Image", needsHeader: .notNeeded, items: [.image]),
-                                            EditScreenModelSection(title: "Base Info", needsHeader: .notNeeded, items: [.inputItem(placeholder: "Dish Name"), .inputItem(placeholder: "Dish Type")]),
-                                            EditScreenModelSection(title: "Ingredients", needsHeader: .need(title: "Ingredients"), items: []),
-                                            EditScreenModelSection(title: "Order of Action", needsHeader: .need(title: "Order of Action"), items: [.inputItem(placeholder: "Action")]),
-                                            EditScreenModelSection(title: "Extra", needsHeader: .notNeeded, items: [.inputItem(placeholder: "Cuisine"), .inputItem(placeholder: "Calories")])
+    private var array: [EditScreenModelSection] = [ EditScreenModelSection(title: "Image", needsHeader: .notNeeded, items: [.image]),
+                                                    EditScreenModelSection(title: "Base Info", needsHeader: .notNeeded, items: [.inputItem(placeholder: "Dish Name", inputedText: nil), .inputItem(placeholder: "Dish Type", inputedText: nil)]),
+                                                    EditScreenModelSection(title: "Ingredients", needsHeader: .need(title: "Ingredients"), isRemovable: true, items: []),
+                                                    EditScreenModelSection(title: "Order of Action", needsHeader: .need(title: "Order of Action"), isRemovable: true, items: [.inputItem(placeholder: "Action", inputedText: nil)]),
+                                                    EditScreenModelSection(title: "Extra", needsHeader: .notNeeded, items: [.inputItem(placeholder: "Cuisine", inputedText: nil), .inputItem(placeholder: "Calories", inputedText: nil)])
     ]
+    
+    func setDish(_ dishModel: DishModel) {
+        array = EditScreenConvertationModelHelper.convertate(with: dishModel)
+    }
     
     var sectionCount: Int {
         array.count
-   }
+    }
+    
     
     // Return type of the cell
     func getRow(for indexPath: IndexPath) -> EditScreenItemType? {
@@ -60,6 +131,7 @@ class EditScreenModel {
    
     
     // Add the new cell in section and return the indexPath of this cell
+
     func appEnd(section: Int, ingredient: IngredientModel?) -> IndexPath {
        let mySection = array[section]
        let indexPath = IndexPath(row: mySection.items.count, section: section)
@@ -69,7 +141,7 @@ class EditScreenModel {
             array[section].items.append(.labelItem(title: newIngredient.name))
         }
        case "Order of Action":
-           array[section].items.append(.inputItem(placeholder: "Action"))
+        array[section].items.append(.inputItem(placeholder: "Action", inputedText: nil))
        default:
            break
        }
@@ -80,7 +152,7 @@ class EditScreenModel {
     func checkDeleting(indexPath: IndexPath) -> Bool {
         guard array.indices.contains(indexPath.section), array[indexPath.section].items.indices.contains(indexPath.row)  else { return false }
        let section = array[indexPath.section]
-       guard section.items.count > 1 && (section.title == "Order of Action" || section.title == "Ingredients") else { return false }
+        guard section.checkRemavable() else { return false }
        array[indexPath.section].items.remove(at: indexPath.row)
        return true
    }
@@ -108,16 +180,6 @@ class EditScreenModel {
         return array[section]
     }
     
-    // FIXME: add get Image from name
-//    func fetchImage(from url: URL) -> Data? {
-//        do {
-//            let data = try Data(contentsOf: url)
-//            return data
-//        } catch {
-//            print(error)
-//            return nil
-//        }
-//    }
     
     
     func getDocumentPath(with name: String) -> String {

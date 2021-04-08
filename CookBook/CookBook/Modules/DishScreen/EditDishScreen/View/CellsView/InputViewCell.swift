@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StandartViewCell: UITableViewCell{
+class InputViewCell: UITableViewCell{
     
     var textField: UITextField?
 

@@ -16,35 +16,9 @@ struct IngredientModel {
     var id: String
 }
 
-class CoreDataService {
-    
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "IngredientsModel")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-    
-    func saveContext () {
-        let context = persistentContainer.newBackgroundContext()
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
-    
-}
-
 protocol IngredientServiceProtocol {
-    func addIngredient(_ ingredient: IngredientModel)
-    func deleteIngredient(index: Int)
+    func addIngredient(_ ingredient: IngredientModel, completion: VoidCallback?)
+    func deleteIngredient(index: Int, completion: VoidCallback?)
     var ingredientsCount: Int { get }
     
     func fetchIngredient(for index: Int) -> IngredientModel?
@@ -56,45 +30,40 @@ class IngredientsService: IngredientServiceProtocol {
     private let coreDataService: CoreDataService
     
     
-    private var updateView: VoidCallback?
-    
-    init(updateViewData: VoidCallback?) {
+    init() {
         coreDataService = CoreDataService()
-        self.updateView = updateViewData
-        
-        self.updateData()
     }
     
-    func fetchIngredient(for requiredID: String) -> Ingredient? {
-        let currentContext = coreDataService.persistentContainer.newBackgroundContext()
-        let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
-        do {
-            let ingredientsObjects = try currentContext.fetch(fetchRequest)
-            for element in ingredientsObjects {
-                if let _ = element.value(forKey: "name") as? String, let id = element.value(forKey: "id") as? String, id == requiredID {
-                    return element
-                }
-            }
-        } catch {
-            print(error)
+    func fetchIngredient(for requiredIDs: [String], context: NSManagedObjectContext? = nil) -> [Ingredient] {
+        let currentContext = context ?? coreDataService.persistentContainer.newBackgroundContext()
+        
+        var array: [Ingredient] = []
+
+        requiredIDs.forEach {
+            let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
+            fetchRequest.predicate = NSPredicate(format: "id == %@", $0)
+            guard let ingredientsObjects = try? currentContext.fetch(fetchRequest) else { return }
+            array.append(contentsOf: ingredientsObjects)
         }
-        return nil
+
+        return array
+    }
+    
+    func fetchAllElements(complition: VoidCallback?) {
+        updateData(completion: complition)
     }
     
     // Add ingredient at ingredients array and CoreData
-    func addIngredient(_ ingredient: IngredientModel) {
-        DispatchQueue.global(qos: .default).async { [unowned self] in
-            let currentContext = coreDataService.persistentContainer.newBackgroundContext()
+    func addIngredient(_ ingredient: IngredientModel, completion: VoidCallback?) {
+        DispatchQueue.global(qos: .default).async {
+            let currentContext = self.coreDataService.persistentContainer.newBackgroundContext()
             
             let ingredientObject = Ingredient(context: currentContext)
             ingredientObject.id = ingredient.id
             ingredientObject.name = ingredient.name
             do {
                 try currentContext.save()
-                updateData()
-                DispatchQueue.main.async { [unowned self] in
-                    updateView?()
-                }
+                self.updateData(completion: completion)
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
@@ -102,19 +71,22 @@ class IngredientsService: IngredientServiceProtocol {
     }
     
     // Update the ingredients array from coreData
-    private func updateData() {
+    private func updateData(completion: VoidCallback?) {
         DispatchQueue.global(qos: .default).async { [unowned self] in
         let currentContext = coreDataService.persistentContainer.newBackgroundContext()
 
-            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Ingredient")
+            let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
             do {
-                let ingredientsObjects = try currentContext.fetch(fetchRequest)
+                let ingredientsObjects = try currentContext.fetch(fetchRequest) as [Ingredient]
                 ingredients = []
                 for element in ingredientsObjects {
                     if let name = element.value(forKey: "name") as? String, let id = element.value(forKey: "id") as? String {
                         let ingredient  = IngredientModel(name: name, id: id)
                         ingredients.append(ingredient)
                     }
+                }
+                DispatchQueue.main.async {
+                    completion?()
                 }
             } catch {
                 print(error)
@@ -123,7 +95,7 @@ class IngredientsService: IngredientServiceProtocol {
     }
     
     //Delete ingredients from ingredients array and CoreData
-    func deleteIngredient(index: Int) {
+    func deleteIngredient(index: Int, completion: VoidCallback?) {
         guard ingredients.indices.contains(index) else {return}
         DispatchQueue.global(qos: .default).async { [unowned self] in
         let currentContext = coreDataService.persistentContainer.newBackgroundContext()
@@ -135,10 +107,10 @@ class IngredientsService: IngredientServiceProtocol {
                     if let id = object.value(forKey: "id") as? String, id == ingredient.id {
                         currentContext.delete(object)
                         try currentContext.save()
-                        updateData()
-                        DispatchQueue.main.async {
-                            updateView?()
-                        }
+                        updateData(completion: completion)
+//                        DispatchQueue.main.async {
+//                            completion?()
+//                        }
                     }
                 }
             } catch {

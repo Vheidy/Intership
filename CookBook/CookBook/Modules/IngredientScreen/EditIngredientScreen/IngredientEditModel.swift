@@ -8,7 +8,7 @@
 import Foundation
 
 class IngredientEditModel {
-    var array: [EditScreenModelSection] = [EditScreenModelSection(title: "Main", needsHeader: .notNeeded, items: [.inputItem(placeholder: "Name")])]
+    var array: [EditScreenModelSection] = [EditScreenModelSection(title: "Main", needsHeader: .notNeeded, items: [.inputItem(placeholder: "Name", inputedText: nil)])]
     
     func sectionCount() -> Int {
         return array.count

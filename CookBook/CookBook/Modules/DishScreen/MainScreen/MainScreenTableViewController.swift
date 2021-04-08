@@ -11,15 +11,24 @@ import CoreData
 
 class MainScreenTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    private var viewModel: DishService
+    private var dishService: DishService
+    var indexPath: IndexPath?
     
     init(with viewModel: DishService) {
-        self.viewModel = viewModel
+        self.dishService = viewModel
         super.init(nibName: nil, bundle: nil)
-        self.viewModel.updateScreen = tableView.reloadData
-        self.viewModel.fetchController.delegate = self
+        self.dishService.updateScreen = tableView.reloadData
+        self.dishService.fetchController.delegate = self
 
         setup()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.indexPath = indexPath
+        presentEditScreen()
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.isSelected = false
+        self.indexPath = nil
     }
     
     private func setup() {
@@ -32,12 +41,17 @@ class MainScreenTableViewController: UITableViewController, NSFetchedResultsCont
     
     // Add dish to the model
     func addDish(_ dish: DishModel) {
-        viewModel.addDish(dish: dish)
+        dishService.addDish(dish: dish)
     }
     
     // Create and present EditScreen
     @objc func presentEditScreen() {
-        let editScreen = EditDishViewController(with: EditScreenModel(), saveAction: self.addDish(_:))
+        var editScreen: EditDishViewController
+        if let index = self.indexPath {
+            editScreen = EditDishViewController(with: EditScreenModel(), saveAction: self.addDish(_:), whichIsFull: dishService.fetchDish(for: index))
+        } else {
+            editScreen = EditDishViewController(with: EditScreenModel(), saveAction: self.addDish(_:), whichIsFull: nil)
+        }
         let navigationController = UINavigationController(rootViewController: editScreen)
         
         present(navigationController, animated: true, completion: nil)
@@ -53,22 +67,22 @@ class MainScreenTableViewController: UITableViewController, NSFetchedResultsCont
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            viewModel.deleteRows(indexPath: indexPath)
+            dishService.deleteRows(indexPath: indexPath)
         }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        viewModel.sectionCount
+        dishService.sectionCount
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.rowsInSections(section)
+        dishService.rowsInSections(section)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? MainScreenTableViewCell else {return UITableViewCell() }
         cell.dishImage?.image = UIImage(named: "dish")
-        if let item = viewModel.getFields(for: indexPath) {
+        if let item = dishService.getFields(for: indexPath) {
             cell.nameLabel?.text = item.name
             cell.dishTypeLabel?.text = item.type
             cell.dishImage?.image = item.image ?? UIImage(named: "dish")

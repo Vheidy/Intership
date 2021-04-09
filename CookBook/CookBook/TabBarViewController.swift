@@ -27,19 +27,26 @@ class TabBarViewController: UITabBarController {
         navigationController?.navigationBar.barTintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 
         let ingredientScreenViewController = IngredientScreenTableViewController(nibName: nil, bundle: nil)
-        let mainViewController = MainScreenTableViewController(with: DishService(dishes: []))
+        let nc3 = UINavigationController(rootViewController: ingredientScreenViewController)
+        let mainViewController = MainScreenTableViewController(with: [])
+        let nc2 = UINavigationController(rootViewController: mainViewController)
         let loadViewController = LoadDishViewController()
+        let nc1 = UINavigationController(rootViewController: loadViewController)
         
         ingredientScreenViewController.tabBarItem.image = UIImage(systemName: "rectangle.fill.on.rectangle.fill")
         mainViewController.tabBarItem.image = UIImage(systemName: "book")
         loadViewController.tabBarItem.image = UIImage(systemName: "square.and.pencil")
-        
+
         ingredientScreenViewController.tabBarItem.title = "Ingredients"
         mainViewController.tabBarItem.title = "Dishes"
         loadViewController.tabBarItem.title = "Popular"
         
-        setViewControllers([loadViewController , mainViewController, ingredientScreenViewController], animated: false)
-    
+//        let vc1 = UINavigationController(rootViewController: mainViewController)
+//        let vc2 = UINavigationController(rootViewController: ingredientScreenViewController)
+//        let vc3 = UINavigationController(rootViewController: loadViewController)
+//
+        setViewControllers( [nc1 , nc2, nc3 ], animated: false)
+        selectedViewController = nc2
     }
 
 }

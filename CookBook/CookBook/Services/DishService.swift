@@ -34,12 +34,9 @@ protocol MainScreenViewModelProtocol: AnyObject {
     var updateScreen: (() -> ())? {get set}
 }
 
-
-
 class DishService {
     
-//    var dishes: [DishModel]
-    var fetchController: NSFetchedResultsController<Dish>
+    var fetchController = NSFetchedResultsController<Dish>()
     var updateScreen: (() -> ())?
     
     private let coreDataService: CoreDataService
@@ -56,33 +53,20 @@ class DishService {
         return sectionInfo.numberOfObjects
     }
     
-    init(dishes: [DishModel]) {
-//        self.dishes = dishes
+    init(dishes: [DishModel], completion: VoidCallback?) {
         coreDataService = CoreDataService()
         self.currentContext = coreDataService.persistentContainer.newBackgroundContext()
-        
-        let request = NSFetchRequest<Dish>(entityName: "Dish")
-        let sort = NSSortDescriptor(key: "id", ascending: false)
-        request.sortDescriptors = [sort]
-        
-        fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: currentContext, sectionNameKeyPath: nil, cacheName: nil)
-        
-        do {
-            try fetchController.performFetch()
-            updateScreen?()
-        } catch {
-            print("Fetch failed")
-        }
+        loadSavedData()
     }
     
     
-    func deleteRows(indexPath: IndexPath) {
+    func deleteRows(indexPath: IndexPath, completion: VoidCallback?) {
         let dish = fetchController.object(at: indexPath)
         currentContext.delete(dish)
         do {
             try currentContext.save()
             loadSavedData()
-            updateScreen?()
+            completion?()
         } catch {
             print(error)
         }
@@ -95,7 +79,6 @@ class DishService {
         fetchController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: currentContext, sectionNameKeyPath: nil, cacheName: nil)
         do {
             try fetchController.performFetch()
-            updateScreen?()
         } catch {
             print("Fetch failed")
         }
@@ -149,7 +132,7 @@ class DishService {
     //MARK: - Add Dish in Core Data
 
     // Transform DishModel in DishObject and save it in Coredata
-    func addDish(dish: DishModel) {
+    func addDish(dish: DishModel, completion: VoidCallback?) {
         let dishObject = Dish(context: currentContext)
         dishObject.name = dish.name
         dishObject.typeDish = dish.typeDish
@@ -163,11 +146,9 @@ class DishService {
         addIngredientsandSaveContext(dish, dishObject)
         
         do {
-
-            //            dishObject.addToIngredients(setIngredients)
             try currentContext.save()
             loadSavedData()
-            updateScreen?()
+            completion?()
         } catch {
             print("Save failed")
             print(error)

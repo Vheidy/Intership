@@ -12,6 +12,7 @@
 		7636BC222603948A000B8393 /* EditScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7636BC212603948A000B8393 /* EditScreenModel.swift */; };
 		7652733826023DCB008F9C68 /* InputViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7652733726023DCB008F9C68 /* InputViewCell.swift */; };
 		7655E28A260371960049C533 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7655E289260371960049C533 /* CustomHeader.swift */; };
+		766A73C4261F3FC600F6EC72 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766A73C3261F3FC600F6EC72 /* NetworkService.swift */; };
 		7670D3622608BEA2007C97D4 /* IngredientsEditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7670D3612608BEA2007C97D4 /* IngredientsEditScreen.swift */; };
 		7670D3692608C1A6007C97D4 /* IngredientEditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7670D3682608C1A6007C97D4 /* IngredientEditModel.swift */; };
 		7670D36D2608D443007C97D4 /* SelectIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7670D36C2608D443007C97D4 /* SelectIngredientsViewController.swift */; };
@@ -29,9 +30,11 @@
 		76AB6D9C25FF988000F93B31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76AB6D9B25FF988000F93B31 /* Assets.xcassets */; };
 		76AB6D9F25FF988000F93B31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76AB6D9D25FF988000F93B31 /* LaunchScreen.storyboard */; };
 		76AB6DAC25FF9CFC00F93B31 /* MainScreenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AB6DAB25FF9CFC00F93B31 /* MainScreenTableViewController.swift */; };
-		76AB6DB325FF9FAA00F93B31 /* EditScreenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AB6DB225FF9FAA00F93B31 /* EditScreenTableViewController.swift */; };
+		76AB6DB325FF9FAA00F93B31 /* EditScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AB6DB225FF9FAA00F93B31 /* EditScreenViewController.swift */; };
 		76AB6DC025FFA7F700F93B31 /* IngredientScreenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AB6DBF25FFA7F700F93B31 /* IngredientScreenTableViewController.swift */; };
 		76E75E312614D1C800F3C1B4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E75E302614D1C800F3C1B4 /* TabBarViewController.swift */; };
+		76FEC27226208EC000128C30 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FEC27126208EC000128C30 /* SearchService.swift */; };
+		76FEC2752620A1A500128C30 /* SearchResultViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FEC2742620A1A500128C30 /* SearchResultViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,7 @@
 		7636BC212603948A000B8393 /* EditScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreenModel.swift; sourceTree = "<group>"; };
 		7652733726023DCB008F9C68 /* InputViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewCell.swift; sourceTree = "<group>"; };
 		7655E289260371960049C533 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
+		766A73C3261F3FC600F6EC72 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7670D3612608BEA2007C97D4 /* IngredientsEditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsEditScreen.swift; sourceTree = "<group>"; };
 		7670D3682608C1A6007C97D4 /* IngredientEditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientEditModel.swift; sourceTree = "<group>"; };
 		7670D36C2608D443007C97D4 /* SelectIngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectIngredientsViewController.swift; sourceTree = "<group>"; };
@@ -59,9 +63,11 @@
 		76AB6D9E25FF988000F93B31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76AB6DA025FF988000F93B31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76AB6DAB25FF9CFC00F93B31 /* MainScreenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTableViewController.swift; sourceTree = "<group>"; };
-		76AB6DB225FF9FAA00F93B31 /* EditScreenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreenTableViewController.swift; sourceTree = "<group>"; };
+		76AB6DB225FF9FAA00F93B31 /* EditScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreenViewController.swift; sourceTree = "<group>"; };
 		76AB6DBF25FFA7F700F93B31 /* IngredientScreenTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientScreenTableViewController.swift; sourceTree = "<group>"; };
 		76E75E302614D1C800F3C1B4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		76FEC27126208EC000128C30 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		76FEC2742620A1A500128C30 /* SearchResultViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,7 @@
 				7670D3A22611BDD3007C97D4 /* CoreData */,
 				76A8663226009FF900F80B6A /* DishService.swift */,
 				767E42D12608B77B001836BF /* IngredientService.swift */,
+				766A73C3261F3FC600F6EC72 /* NetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -125,7 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				7636BC2426048F0D000B8393 /* CellsView */,
-				76AB6DB225FF9FAA00F93B31 /* EditScreenTableViewController.swift */,
+				76AB6DB225FF9FAA00F93B31 /* EditScreenViewController.swift */,
 				767FD811261B576C00945A5A /* TableViewDelegate.swift */,
 				767FD814261B57CF00945A5A /* ImagePickerDelegate.swift */,
 			);
@@ -136,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				767FD827261EFA1C00945A5A /* LoadDishViewController.swift */,
+				76FEC2742620A1A500128C30 /* SearchResultViewCell.swift */,
+				76FEC27126208EC000128C30 /* SearchService.swift */,
 			);
 			path = LoadDishScreen;
 			sourceTree = "<group>";
@@ -213,8 +222,8 @@
 		76AB6DC825FFAEA100F93B31 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
-				76A866352600A08E00F80B6A /* MainScreenCell.swift */,
 				76AB6DAB25FF9CFC00F93B31 /* MainScreenTableViewController.swift */,
+				76A866352600A08E00F80B6A /* MainScreenCell.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -298,7 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7635C12426021F3900BE3B89 /* ImageEditCell.swift in Sources */,
-				76AB6DB325FF9FAA00F93B31 /* EditScreenTableViewController.swift in Sources */,
+				76AB6DB325FF9FAA00F93B31 /* EditScreenViewController.swift in Sources */,
 				7652733826023DCB008F9C68 /* InputViewCell.swift in Sources */,
 				76A866362600A08E00F80B6A /* MainScreenCell.swift in Sources */,
 				76E75E312614D1C800F3C1B4 /* TabBarViewController.swift in Sources */,
@@ -307,6 +316,7 @@
 				76AB6DAC25FF9CFC00F93B31 /* MainScreenTableViewController.swift in Sources */,
 				767FD812261B576C00945A5A /* TableViewDelegate.swift in Sources */,
 				767FD822261EF8D600945A5A /* CoreDataService.swift in Sources */,
+				766A73C4261F3FC600F6EC72 /* NetworkService.swift in Sources */,
 				767FD81D261DEE6400945A5A /* SwiftUIView.swift in Sources */,
 				767FD815261B57CF00945A5A /* ImagePickerDelegate.swift in Sources */,
 				7670D3622608BEA2007C97D4 /* IngredientsEditScreen.swift in Sources */,
@@ -315,9 +325,11 @@
 				7670D39B2611BB93007C97D4 /* IngredientsModel.xcdatamodeld in Sources */,
 				7636BC222603948A000B8393 /* EditScreenModel.swift in Sources */,
 				7670D3692608C1A6007C97D4 /* IngredientEditModel.swift in Sources */,
+				76FEC2752620A1A500128C30 /* SearchResultViewCell.swift in Sources */,
 				76AB6D9325FF987E00F93B31 /* AppDelegate.swift in Sources */,
 				76AB6D9525FF987E00F93B31 /* SceneDelegate.swift in Sources */,
 				7655E28A260371960049C533 /* CustomHeader.swift in Sources */,
+				76FEC27226208EC000128C30 /* SearchService.swift in Sources */,
 				767E42D22608B77B001836BF /* IngredientService.swift in Sources */,
 				761AD4E926134138002D1C7F /* SelectTableViewCell.swift in Sources */,
 			);

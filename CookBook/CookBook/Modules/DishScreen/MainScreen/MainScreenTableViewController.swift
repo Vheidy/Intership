@@ -11,13 +11,15 @@ import CoreData
 
 class MainScreenTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    private var dishService: DishService
+    private var dishService = DishService(dishes: [], completion: nil)
     var indexPath: IndexPath?
     
-    init(with viewModel: DishService) {
-        self.dishService = viewModel
+    init(with dishes: [DishModel]) {
         super.init(nibName: nil, bundle: nil)
-        self.dishService.updateScreen = tableView.reloadData
+        dishService = DishService(dishes: dishes, completion: { [weak self] in
+            self?.tableView.reloadData()
+        })
+//        self.dishService.updateScreen = tableView.reloadData
         self.dishService.fetchController.delegate = self
 
         setup()
@@ -41,7 +43,9 @@ class MainScreenTableViewController: UITableViewController, NSFetchedResultsCont
     
     // Add dish to the model
     func addDish(_ dish: DishModel) {
-        dishService.addDish(dish: dish)
+        dishService.addDish(dish: dish, completion: { [weak self] in
+            self?.tableView.reloadData()
+        })
     }
     
     // Create and present EditScreen
@@ -67,7 +71,9 @@ class MainScreenTableViewController: UITableViewController, NSFetchedResultsCont
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            dishService.deleteRows(indexPath: indexPath)
+            dishService.deleteRows(indexPath: indexPath) { [weak self] in
+                self?.tableView.reloadData()
+            }
         }
     }
     

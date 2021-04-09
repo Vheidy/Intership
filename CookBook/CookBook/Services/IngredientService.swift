@@ -73,7 +73,7 @@ class IngredientsService: IngredientServiceProtocol {
     // Update the ingredients array from coreData
     private func updateData(completion: VoidCallback?) {
         DispatchQueue.global(qos: .default).async { [unowned self] in
-        let currentContext = coreDataService.persistentContainer.newBackgroundContext()
+            let currentContext = coreDataService.persistentContainer.newBackgroundContext()
 
             let fetchRequest = NSFetchRequest<Ingredient>(entityName: "Ingredient")
             do {

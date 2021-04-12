@@ -15,8 +15,6 @@ struct Recipe: Codable {
 
 struct HitsModel: Codable {
     var recipe: Recipe
-    var bookmarked: Bool
-    var bought: Bool
 }
 
 struct ResponseModel: Codable {

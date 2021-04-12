@@ -143,8 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				767FD827261EFA1C00945A5A /* LoadDishViewController.swift */,
-				76FEC2742620A1A500128C30 /* SearchResultViewCell.swift */,
 				76FEC27126208EC000128C30 /* SearchService.swift */,
+				76FEC2742620A1A500128C30 /* SearchResultViewCell.swift */,
 			);
 			path = LoadDishScreen;
 			sourceTree = "<group>";

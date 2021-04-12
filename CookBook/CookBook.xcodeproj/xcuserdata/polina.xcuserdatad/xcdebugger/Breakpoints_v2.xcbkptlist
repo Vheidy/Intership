@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "110F240A-46F3-4885-B57E-BF7B5D6DFECC"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED88559C-5A42-4B85-AF32-B2BB0E97B149"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CookBook/Modules/LoadDishScreen/LoadDishViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "searchBarTextDidEndEditing(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DDE03960-6867-4077-9E94-5A9F4C25FEFA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CookBook/Modules/LoadDishScreen/LoadDishViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "searchBarTextDidBeginEditing(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DDE03960-6867-4077-9E94-5A9F4C25FEFA - 59975044da32d08b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CookBook.LoadDishViewController.searchBarTextDidBeginEditing(__C.UISearchBar) -&gt; ()"
+                  moduleName = "CookBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/polina/Desktop/Intership/CookBook/CookBook/Modules/LoadDishScreen/LoadDishViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "202">
+               </Location>
+               <Location
+                  uuid = "DDE03960-6867-4077-9E94-5A9F4C25FEFA - bf36b111d6010afb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #2 (Swift.String) -&gt; () in implicit closure #1 (CookBook.LoadDishViewController) -&gt; (Swift.String) -&gt; () in CookBook.LoadDishViewController.searchBarTextDidBeginEditing(__C.UISearchBar) -&gt; ()"
+                  moduleName = "CookBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/polina/Desktop/Intership/CookBook/CookBook/Modules/LoadDishScreen/LoadDishViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "37">
+               </Location>
+               <Location
+                  uuid = "DDE03960-6867-4077-9E94-5A9F4C25FEFA - 902a988a05701569"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #4 () -&gt; () in implicit closure #3 (__C.UICollectionView) -&gt; () -&gt; () in CookBook.LoadDishViewController.searchBarTextDidBeginEditing(__C.UISearchBar) -&gt; ()"
+                  moduleName = "CookBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/polina/Desktop/Intership/CookBook/CookBook/Modules/LoadDishScreen/LoadDishViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "04CC5726-9956-44C2-9555-C6B5382B52F5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CookBook/Modules/LoadDishScreen/LoadDishViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB981C95-0D2C-4596-BC1F-5945CA1AF574"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CookBook/Modules/LoadDishScreen/SearchResultViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "init(frame:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3CF84385-28D0-443B-88D2-F8A2EF560465"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CookBook/Modules/LoadDishScreen/SearchService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "searchFor(word:errorHandler:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3CF84385-28D0-443B-88D2-F8A2EF560465 - 3d8f3441f93b2b7e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CookBook.SearchService.searchFor(word: Swift.String, errorHandler: Swift.Optional&lt;(Swift.String) -&gt; ()&gt;, completion: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "CookBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/polina/Desktop/Intership/CookBook/CookBook/Modules/LoadDishScreen/SearchService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "3CF84385-28D0-443B-88D2-F8A2EF560465 - 8a4c6207a43e8d55"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;CookBook.ResponseModel, CookBook.APIError&gt;) -&gt; () in CookBook.SearchService.searchFor(word: Swift.String, errorHandler: Swift.Optional&lt;(Swift.String) -&gt; ()&gt;, completion: Swift.Optional&lt;() -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "CookBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/polina/Desktop/Intership/CookBook/CookBook/Modules/LoadDishScreen/SearchService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "371">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

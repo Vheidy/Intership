@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import SafariServices
+
+class CustomTapGestureRecognezer: UITapGestureRecognizer {
+    var url: URL?
+}
 
 class LoadDishViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
@@ -25,8 +30,17 @@ class LoadDishViewController: UIViewController, UICollectionViewDataSource, UICo
             cell.layer.shadowColor = UIColor.black.cgColor
             cell.layer.shadowOpacity = 0.5
             cell.layer.shadowOffset = CGSize(width: 0, height: 1)
+            let gesture = CustomTapGestureRecognezer(target: self, action: #selector(tapOnCell(with:)))
+            gesture.url = item.url
+            cell.addGestureRecognizer(gesture)
         }
         return cell
+    }
+    
+    @objc func tapOnCell(with gestureRecognizer: CustomTapGestureRecognezer) {
+        guard let url = gestureRecognizer.url else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true, completion: nil)
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {

@@ -11,6 +11,7 @@ import UIKit
 struct CollectionViewItem {
     var label: String
     var image: UIImage
+    var url: URL?
 }
 
 protocol SearchProtocol {
@@ -22,19 +23,6 @@ protocol SearchProtocol {
 class SearchService: SearchProtocol {
 
     var recipeStore: [Recipe]
-//        [Recipe(label: "Dinner Tonight: Chipped Beef Gravy",
-//                                        image: "https://www.edamam.com/web-img/8eb/8eb4bcfbe8c89c21fcaecdc4e7ac6da5.jpg",
-//                                        url: "http://www.seriouseats.com/recipes/2010/02/chipped-beef-gravy-on-toast-stew-on-a-shingle-recipe.html"),
-//                                 Recipe(label: "Crispy Potato Mojos recipes",
-//                                        image: "https://www.edamam.com/web-img/77a/77a79534149036235152fa0c40ecf02b",
-//                                        url: "http://pinchofyum.com/crispy-potato-mojos"),
-//                                 Recipe(label: "Dinner Tonight: Chipped Beef Gravy",
-//                                                                     image: "https://www.edamam.com/web-img/8eb/8eb4bcfbe8c89c21fcaecdc4e7ac6da5.jpg",
-//                                                                     url: "http://www.seriouseats.com/recipes/2010/02/chipped-beef-gravy-on-toast-stew-on-a-shingle-recipe.html"),
-//                                 Recipe(label: "Crispy Potato Mojos recipes",
-//                                        image: "https://www.edamam.com/web-img/77a/77a79534149036235152fa0c40ecf02b",
-//                                        url: "http://pinchofyum.com/crispy-potato-mojos"),
-//    ]
     var newtworkService: RecipeProvider
     
     var numberOfItems: Int {
@@ -56,7 +44,7 @@ class SearchService: SearchProtocol {
             return nil
         }
         let image = self.fetchImage(from: recipe.image) ?? standartImage
-        return CollectionViewItem(label: recipe.label, image: image)
+        return CollectionViewItem(label: recipe.label, image: image, url: URL(string: recipe.url))
     }
     
     private func fetchImage(from urlString: String) -> UIImage? {
